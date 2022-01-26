@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Look",
+                    "type": "PassThrough",
+                    "id": "a3cedbdc-d648-4be9-879d-5d5028d48029",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "8a689409-779b-41d6-b2fd-bfb94f43db21",
@@ -42,14 +50,6 @@
                     "type": "Button",
                     "id": "38c4d464-d400-4bb4-ba7b-12da08015391",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Look",
-                    "type": "PassThrough",
-                    "id": "a3cedbdc-d648-4be9-879d-5d5028d48029",
-                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }

@@ -2461,6 +2461,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268873177}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+<<<<<<< HEAD
 --- !u!1 &1275906280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2590,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
+=======
+>>>>>>> parent of e66a6d9 (+ New Area In Lewis' Scene)
 --- !u!1 &1434890577
 GameObject:
   m_ObjectHideFlags: 0
