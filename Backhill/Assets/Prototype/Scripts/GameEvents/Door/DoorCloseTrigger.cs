@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpenTrigger : MonoBehaviour
+public class DoorCloseTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameEvents.current.DoorTriggerOpen();
+        GameEvents.current.DoorTriggerClose();
     }
 }

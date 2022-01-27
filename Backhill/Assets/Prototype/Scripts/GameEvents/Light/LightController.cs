@@ -6,8 +6,8 @@ public class LightController : MonoBehaviour
 {
     private void Start()
     {
-        GameEvents.current.onLightTriggerEnter += LightsOff;
-        GameEvents.current.onLightTriggerExit += LightsOn;
+        GameEvents.current.ToggleLightOn += LightsOff;
+        GameEvents.current.ToggleLightOff += LightsOn;
     }
 
     private void LightsOff()

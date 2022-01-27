@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightOnTrigger : MonoBehaviour
+public class LightToggle : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameEvents.current.LigtTriggerEnter();
+        GameEvents.current.LightToggleOn();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameEvents.current.LigtTriggerExit();
+        GameEvents.current.LightToggleOff();
     }
 }

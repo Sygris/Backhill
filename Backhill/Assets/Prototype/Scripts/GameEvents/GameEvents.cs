@@ -12,30 +12,47 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action onDoorwayTriggerEnter;
-    public void DoorwayTriggerEnter()
+    public event Action TriggerDoorOpen;
+    public void DoorTriggerOpen()
     {
-        if (onDoorwayTriggerEnter != null)
-        {
-            onDoorwayTriggerEnter();
-        }
+        if (TriggerDoorOpen != null)
+            TriggerDoorOpen();
     }
 
-    public event Action onLightTriggerEnter;
-    public void LigtTriggerEnter()
+    public event Action TriggerDoorClose;
+    public void DoorTriggerClose()
     {
-        if (onLightTriggerEnter != null)
-        {
-            onLightTriggerEnter();
-        }
+        if (TriggerDoorClose != null)
+            TriggerDoorClose();
     }
 
-    public event Action onLightTriggerExit;
-    public void LigtTriggerExit()
+    public event Action TriggerFinalDoorOpen;
+    public void FinalDoorTriggerOpen()
     {
-        if (onLightTriggerExit != null)
-        {
-            onLightTriggerExit();
-        }
+        if (TriggerFinalDoorOpen != null)
+            TriggerFinalDoorOpen();
     }
+
+    public event Action TriggerFinalDoorClose;
+    public void FinalDoorTriggerClose()
+    {
+        if (TriggerFinalDoorClose != null)
+            TriggerFinalDoorClose();
+    }
+
+    public event Action ToggleLightOn;
+    public void LightToggleOn()
+    {
+        if (ToggleLightOn != null)
+            ToggleLightOn();
+    }
+
+    public event Action ToggleLightOff;
+    public void LightToggleOff()
+    {
+        if (ToggleLightOff != null)
+            ToggleLightOff();
+    }
+
+
 }
