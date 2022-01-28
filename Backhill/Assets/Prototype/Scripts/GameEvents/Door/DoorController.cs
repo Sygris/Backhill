@@ -14,11 +14,13 @@ public class DoorController : MonoBehaviour
 
     private void OpenDoor()
     {
+        AudioManager.instance.PlaySound("DoorOpen", transform.position, 0.5f);
         _myAnim.SetTrigger("OpenDoor");
     }
 
     private void CloseDoor()
     {
+        AudioManager.instance.PlaySound("DoorClose", transform.position, 0.5f);
         _myAnim.SetTrigger("CloseDoor");
     }
 }
