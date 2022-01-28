@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class FinalDoorController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _myAnim;
+    private void Start()
     {
-        
+        GameEvents.current.TriggerFinalDoorOpen += FinalDoorOpen;
+        GameEvents.current.TriggerFinalDoorClose += FinalDoorClose;
+        _myAnim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FinalDoorOpen()
     {
-        
+        _myAnim.SetTrigger("DoorOpen");
+    }
+
+    private void FinalDoorClose()
+    {
+        _myAnim.SetTrigger("DoorClose");
     }
 }
