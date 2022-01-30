@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Prototype/Scripts/Input/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Prototype/Scripts/Input/Input.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerInput : IInputActionCollection, IDisposable
+public class @Input : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerInput()
+    public @Input()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerInput"",
+    ""name"": ""Input"",
     ""maps"": [
         {
             ""name"": ""CharacterControls"",
@@ -31,6 +31,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""2f15f81c-d9ab-4f83-ba5f-c955a23857be"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Torch"",
+                    ""type"": ""Button"",
+                    ""id"": ""89d3a255-c425-4b8a-b17c-9095ef9b7fc7"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -101,6 +109,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b799da39-f92a-4e5c-87ae-39bb48b8ec87"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Torch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -111,6 +130,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Movement = m_CharacterControls.FindAction("Movement", throwIfNotFound: true);
         m_CharacterControls_Look = m_CharacterControls.FindAction("Look", throwIfNotFound: true);
+        m_CharacterControls_Torch = m_CharacterControls.FindAction("Torch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -162,12 +182,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private ICharacterControlsActions m_CharacterControlsActionsCallbackInterface;
     private readonly InputAction m_CharacterControls_Movement;
     private readonly InputAction m_CharacterControls_Look;
+    private readonly InputAction m_CharacterControls_Torch;
     public struct CharacterControlsActions
     {
-        private @PlayerInput m_Wrapper;
-        public CharacterControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        private @Input m_Wrapper;
+        public CharacterControlsActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_CharacterControls_Movement;
         public InputAction @Look => m_Wrapper.m_CharacterControls_Look;
+        public InputAction @Torch => m_Wrapper.m_CharacterControls_Torch;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -183,6 +205,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnLook;
+                @Torch.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnTorch;
+                @Torch.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnTorch;
+                @Torch.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnTorch;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -193,6 +218,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Torch.started += instance.OnTorch;
+                @Torch.performed += instance.OnTorch;
+                @Torch.canceled += instance.OnTorch;
             }
         }
     }
@@ -201,5 +229,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnTorch(InputAction.CallbackContext context);
     }
 }

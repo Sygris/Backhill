@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1159071462600511365}
   - component: {fileID: 1159071462600511366}
   - component: {fileID: 1159071462600511367}
+  - component: {fileID: 4756933290130952773}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -115,6 +116,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78618faf20284ed47a81c482743535a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 4756933290130952773}
+  _torch: {fileID: 3125320702470551816}
+--- !u!114 &4756933290130952773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159071462600511360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b96af6cab1812e4bb68a9e47446d676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _speed: 5
   _mouseSensivity: 100
   _clamp: 90
@@ -211,13 +226,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1285996914433059089}
   - component: {fileID: 8546479748235125556}
+  - component: {fileID: 3125320702470551816}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1285996914433059089
 Transform:
   m_ObjectHideFlags: 0
@@ -294,3 +310,15 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3125320702470551816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5709790914173682711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5663c1f235c9d149b41c1f08c9b643e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
