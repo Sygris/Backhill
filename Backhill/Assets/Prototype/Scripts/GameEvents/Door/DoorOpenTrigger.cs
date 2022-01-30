@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DoorOpenTrigger : MonoBehaviour
 {
-    public int ID;
+    [SerializeField] private int _triggerID;
+    [SerializeField] private string _sfxTitle;
     private void OnTriggerEnter(Collider other)
     {
-        GameEvents.instance.DoorTriggerOpen(ID);
+        AudioManager.instance.PlaySound(_sfxTitle, transform.position, 0.5f);
+
+        GameEvents.Instance.DoorTriggerOpen(_triggerID);
+
+        gameObject.SetActive(false);
     }
 }

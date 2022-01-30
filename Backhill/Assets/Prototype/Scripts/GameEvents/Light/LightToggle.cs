@@ -6,11 +6,11 @@ public class LightToggle : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameEvents.instance.LightToggleOn();
+        GameEvents.Instance.LightToggleOn();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameEvents.instance.LightToggleOff();
+        GameEvents.Instance.LightToggleOff();
     }
 }

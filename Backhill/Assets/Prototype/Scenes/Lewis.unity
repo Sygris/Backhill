@@ -655,6 +655,14 @@ PrefabInstance:
       propertyPath: ID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4669580564441129751, guid: 4642625359577964e9ab928695a1367f, type: 3}
+      propertyPath: DoorID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669580564441129751, guid: 4642625359577964e9ab928695a1367f, type: 3}
+      propertyPath: _doorID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5050824243741809731, guid: 4642625359577964e9ab928695a1367f, type: 3}
       propertyPath: m_Name
       value: FinalDoor
@@ -727,7 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf81bc1adda21dd4d9918dfa91b35944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  _triggerID: 0
+  _sfxTitle: DoorOpen
 --- !u!1001 &188458984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -896,7 +905,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf81bc1adda21dd4d9918dfa91b35944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  _triggerID: 1
+  _sfxTitle: DoorOpen
+--- !u!1 &298649503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298649504}
+  - component: {fileID: 298649505}
+  - component: {fileID: 298649507}
+  - component: {fileID: 298649506}
+  m_Layer: 0
+  m_Name: NewAreaColliderActive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &298649504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298649503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14, y: 0, z: -14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 863470796}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &298649505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298649503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &298649506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298649503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf94feeabac81142bb1e6f3c516324b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerID: 0
+--- !u!114 &298649507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298649503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ee38151ad72ec458e06a3b462f1d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectID: 0
+  _targetObject:
+  - {fileID: 577632224}
 --- !u!1 &322403960
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +1038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0527c5ced01984ba2507e2b829c9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  _triggerID: 1
+  _sfxTitle: DoorKnockAndClose
 --- !u!1001 &392591309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1373,6 +1458,81 @@ Transform:
   m_Father: {fileID: 191593910}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &577632224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577632225}
+  - component: {fileID: 577632227}
+  - component: {fileID: 577632228}
+  - component: {fileID: 577632226}
+  m_Layer: 0
+  m_Name: NewAreaWallDeactive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &577632225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577632224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14, y: 0, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 863470796}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &577632226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577632224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72781231f74875a4c9f8a69f64401015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerID: 1
+--- !u!65 &577632227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577632224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &577632228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577632224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ee38151ad72ec458e06a3b462f1d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectID: 1
+  _targetObject:
+  - {fileID: 408963817}
+  - {fileID: 418132565}
 --- !u!1 &618641387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,14 +2130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1c96d0530f97440b5991afb3644bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipName:
-  - DoorOpen
-  - DoorShut
-  - DoorKnockAndShut
-  clipList:
-  - {fileID: 8300000, guid: f071ad7085008834bb170c7066c0d8c4, type: 3}
-  - {fileID: 8300000, guid: 0b1298dce2486934495907743e3e51ef, type: 3}
-  - {fileID: 8300000, guid: 01c06e6cb35627049a5abae5f42a85b8, type: 3}
+  clipName: []
+  clipList: []
   prefabToPool: {fileID: 6241364985798413953, guid: 45b62c1583fe03b469cd651aa038d4fa, type: 3}
   amountToPool: 10
 --- !u!4 &808148389
@@ -2276,6 +2430,8 @@ Transform:
   - {fileID: 930267920}
   - {fileID: 284348865}
   - {fileID: 322403961}
+  - {fileID: 298649504}
+  - {fileID: 577632225}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2479,7 +2635,7 @@ GameObject:
   - component: {fileID: 930267921}
   - component: {fileID: 930267922}
   m_Layer: 0
-  m_Name: DoorShut
+  m_Name: DoorClose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2493,7 +2649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930267919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.5, y: 0, z: 0}
+  m_LocalPosition: {x: -16.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 863470796}
@@ -2524,7 +2680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0527c5ced01984ba2507e2b829c9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  _triggerID: 0
+  _sfxTitle: DoorClose
 --- !u!4 &1119378325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 367782628876180575, guid: 4642625359577964e9ab928695a1367f, type: 3}
@@ -3865,7 +4022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940648094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 0}
+  m_LocalPosition: {x: -11, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 863470796}
@@ -3882,7 +4039,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 1, z: 8}
+  m_Size: {x: 12, y: 1, z: 8}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!114 &1940648097
 MonoBehaviour:
@@ -4288,7 +4445,7 @@ MonoBehaviour:
   clipName:
   - DoorOpen
   - DoorClose
-  - DoorKnockAndShut
+  - DoorKnockAndClose
   clipList:
   - {fileID: 8300000, guid: f071ad7085008834bb170c7066c0d8c4, type: 3}
   - {fileID: 8300000, guid: 0b1298dce2486934495907743e3e51ef, type: 3}

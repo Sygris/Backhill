@@ -5,9 +5,9 @@ using System;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents instance;
+    public static GameEvents Instance;
 
-    private void Awake() { instance = this; }
+    private void Awake() { Instance = this; }
 
     public event Action<int> TriggerDoorOpen;
     public void DoorTriggerOpen(int id)
@@ -37,5 +37,18 @@ public class GameEvents : MonoBehaviour
             ToggleLightOff();
     }
 
+    public event Action<int> TriggerGameObjectTrue;
+    public void ActivateGameObject(int id)
+    {
+        if (TriggerGameObjectTrue != null)
+            TriggerGameObjectTrue(id);
+    }
+
+    public event Action<int> TriggerGameObjectFalse;
+    public void DeactivateGameObject(int id)
+    {
+        if (TriggerGameObjectFalse != null)
+            TriggerGameObjectFalse(id);
+    }
 
 }
