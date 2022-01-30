@@ -6,8 +6,8 @@ public class LightController : MonoBehaviour
 {
     private void Start()
     {
-        GameEvents.current.ToggleLightOn += LightsOff;
-        GameEvents.current.ToggleLightOff += LightsOn;
+        GameEvents.instance.ToggleLightOn += LightsOff;
+        GameEvents.instance.ToggleLightOff += LightsOn;
     }
 
     private void LightsOff()

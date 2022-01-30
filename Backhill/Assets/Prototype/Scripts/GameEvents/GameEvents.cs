@@ -5,39 +5,22 @@ using System;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents current;
+    public static GameEvents instance;
 
-    private void Awake()
-    {
-        current = this;
-    }
+    private void Awake() { instance = this; }
 
-    public event Action TriggerDoorOpen;
-    public void DoorTriggerOpen()
+    public event Action<int> TriggerDoorOpen;
+    public void DoorTriggerOpen(int id)
     {
         if (TriggerDoorOpen != null)
-            TriggerDoorOpen();
+            TriggerDoorOpen(id);
     }
 
-    public event Action TriggerDoorClose;
-    public void DoorTriggerClose()
+    public event Action<int> TriggerDoorClose;
+    public void DoorTriggerClose(int id)
     {
         if (TriggerDoorClose != null)
-            TriggerDoorClose();
-    }
-
-    public event Action TriggerFinalDoorOpen;
-    public void FinalDoorTriggerOpen()
-    {
-        if (TriggerFinalDoorOpen != null)
-            TriggerFinalDoorOpen();
-    }
-
-    public event Action TriggerFinalDoorClose;
-    public void FinalDoorTriggerClose()
-    {
-        if (TriggerFinalDoorClose != null)
-            TriggerFinalDoorClose();
+            TriggerDoorClose(id);
     }
 
     public event Action ToggleLightOn;

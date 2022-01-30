@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DoorCloseTrigger : MonoBehaviour
 {
+    public int ID;
     private void OnTriggerEnter(Collider other)
     {
-        GameEvents.current.DoorTriggerClose();
+        GameEvents.instance.DoorTriggerClose(ID);
     }
 }
