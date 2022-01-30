@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerID: 0
-  _sfxTitle: DoorOpen
+  _sfxTitle: {fileID: 8300000, guid: f071ad7085008834bb170c7066c0d8c4, type: 3}
 --- !u!1001 &188458984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerID: 1
-  _sfxTitle: DoorOpen
+  _sfxTitle: {fileID: 8300000, guid: f071ad7085008834bb170c7066c0d8c4, type: 3}
 --- !u!1 &298649503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerID: 1
-  _sfxTitle: DoorKnockAndClose
+  _sfxTitle: {fileID: 8300000, guid: 01c06e6cb35627049a5abae5f42a85b8, type: 3}
 --- !u!1001 &392591309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2130,8 +2130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1c96d0530f97440b5991afb3644bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipName: []
-  clipList: []
   prefabToPool: {fileID: 6241364985798413953, guid: 45b62c1583fe03b469cd651aa038d4fa, type: 3}
   amountToPool: 10
 --- !u!4 &808148389
@@ -2681,7 +2679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerID: 0
-  _sfxTitle: DoorClose
+  _sfxTitle: {fileID: 8300000, guid: 0b1298dce2486934495907743e3e51ef, type: 3}
 --- !u!4 &1119378325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 367782628876180575, guid: 4642625359577964e9ab928695a1367f, type: 3}
@@ -4442,14 +4440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1c96d0530f97440b5991afb3644bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipName:
-  - DoorOpen
-  - DoorClose
-  - DoorKnockAndClose
-  clipList:
-  - {fileID: 8300000, guid: f071ad7085008834bb170c7066c0d8c4, type: 3}
-  - {fileID: 8300000, guid: 0b1298dce2486934495907743e3e51ef, type: 3}
-  - {fileID: 8300000, guid: 01c06e6cb35627049a5abae5f42a85b8, type: 3}
   prefabToPool: {fileID: 4906835908041658394, guid: c316476c466690c4081aaae7c60525f2, type: 3}
   amountToPool: 10
 --- !u!1 &2122631080
