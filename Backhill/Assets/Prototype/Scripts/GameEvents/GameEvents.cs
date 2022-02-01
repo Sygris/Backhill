@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[System.Serializable]
+public class MyClass
+{
+    [SerializeReference] public List<Conditions> conditions = new List<Conditions>();
+    [SerializeField] public List<Events> Events = new List<Events>();
+    [SerializeField] public bool complete = false;
+}
+
 public class GameEvents : MonoBehaviour
 {
+    [SerializeReference] public List<MyClass> Events = new List<MyClass>();
+
     public static GameEvents Instance;
 
     private void Awake() { Instance = this; }
