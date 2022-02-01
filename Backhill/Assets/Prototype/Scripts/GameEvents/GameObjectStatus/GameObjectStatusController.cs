@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameObjectStatusController : MonoBehaviour
 {
     [SerializeField] private int _objectID;
-    [SerializeField] private List<GameObject> _targetObject;
+    [SerializeField] private List<GameObject> _targetObjectActive;
+    [SerializeField] private List<GameObject> _targetObjectDeactive;
     void Start()
     {
         GameEvents.Instance.TriggerGameObjectTrue += ActivateObject;
@@ -16,7 +17,7 @@ public class GameObjectStatusController : MonoBehaviour
     {
         if (id == _objectID)
         {
-            foreach (GameObject target in _targetObject)
+            foreach (GameObject target in _targetObjectDeactive)
                 target.SetActive(true);
         }
     }
@@ -24,7 +25,7 @@ public class GameObjectStatusController : MonoBehaviour
     private void DeactivateObject(int id)
     {
         if (id == _objectID)
-            foreach (GameObject target in _targetObject)
+            foreach (GameObject target in _targetObjectActive)
                 target.SetActive(false);
     }
 }
