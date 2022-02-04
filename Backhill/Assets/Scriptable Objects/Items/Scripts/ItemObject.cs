@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemObject : MonoBehaviour
+public enum ItemType 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    KeyItem,
+    RecoveryItem,
+    Default
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public abstract class ItemObject : ScriptableObject
+{
+    public GameObject prefab;
+    public ItemType itemType;
+    public string name;
+    
+    [TextArea(15, 20)]
+    public string description;
 }
