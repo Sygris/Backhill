@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "Input",
     "maps": [
         {
             "name": "CharacterControls",
@@ -25,6 +25,14 @@
                     "name": "Torch",
                     "type": "Button",
                     "id": "89d3a255-c425-4b8a-b17c-9095ef9b7fc7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "ac85140b-d084-49a6-b870-c3341a41e05d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -105,6 +113,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Torch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "676cfecb-6aa6-4adf-941c-24c3978b0021",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

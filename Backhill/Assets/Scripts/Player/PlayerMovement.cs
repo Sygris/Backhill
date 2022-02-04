@@ -13,8 +13,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed = 5f;
 
     [Header("Looking Settings")]
-    [SerializeField] private float _mouseSensivity = 100f;
+    [SerializeField] private float _mouseSensivity;
     [SerializeField] private float _clamp = 90f;
+
+    // Mouse Sensivity Property
+    public float MouseSensivity
+    {
+        set { _mouseSensivity = value; }
+    }
 
     private void Start()
     {

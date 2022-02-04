@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Script References")]
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PauseMenu _pauseMenu;
     [SerializeField] private Torch _torch;
 
     private void Awake()
@@ -17,7 +18,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        _playerInput.CharacterControls.Torch.performed += _ctx => _torch.Toggle();
+        _playerInput.CharacterControls.Torch.performed += ctx => _torch.Toggle();
+        _playerInput.CharacterControls.Menu.performed += ctx => _pauseMenu.Toggle();
     }
 
     private void Update()
