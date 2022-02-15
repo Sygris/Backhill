@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prototype/Scenes/Lewis.unity
-    guid: 64ca17c8c4490dc4e848498cf191cd7e
+    path: Assets/VerticalSlice/Scene/Tutorial Area.unity
+    guid: 97e7c63c188d5d545996001420fb76b7
+  - enabled: 1
+    path: Assets/VerticalSlice/Scene/Post-Tutorial.unity
+    guid: c7a4268c73e7d7b46876c820457481a6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5b8a54a2507de4549953b1ab2b38b542, type: 2}

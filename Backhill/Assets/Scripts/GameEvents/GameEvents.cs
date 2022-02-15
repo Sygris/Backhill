@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[System.Serializable]
-public class MyClass
-{
-    [SerializeReference] public List<Conditions> conditions = new List<Conditions>();
-    [SerializeField] public List<Events> Events = new List<Events>();
-    [SerializeField] public bool complete = false;
-}
+//[System.Serializable]
+//public class MyClass
+//{
+//    [SerializeReference] public List<Conditions> conditions = new List<Conditions>();
+//    [SerializeField] public List<Events> Events = new List<Events>();
+//    [SerializeField] public bool complete = false;
+//}
 
 public class GameEvents : MonoBehaviour
 {
-    [SerializeReference] public List<MyClass> Events = new List<MyClass>();
+    //[SerializeReference] public List<MyClass> Events = new List<MyClass>();
 
     public static GameEvents Instance;
 
@@ -61,4 +61,10 @@ public class GameEvents : MonoBehaviour
             TriggerGameObjectFalse(id);
     }
 
+    public event Action TriggerNewScene;
+    public void NewScene()
+    {
+        if (TriggerNewScene != null)
+            TriggerNewScene();
+    }
 }
