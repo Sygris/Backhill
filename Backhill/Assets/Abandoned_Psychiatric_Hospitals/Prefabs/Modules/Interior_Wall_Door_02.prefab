@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 786316181029899534}
   - component: {fileID: 7546033320836821033}
   - component: {fileID: 1728604877892203276}
-  - component: {fileID: 6778902996359796215}
   - component: {fileID: 5616115761682881645}
   m_Layer: 0
   m_Name: Interior_Door_02_LOD0
@@ -150,19 +149,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6778902996359796215
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2400984125113610029}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.7934132, y: 2.1878045, z: 2.0886803}
-  m_Center: {x: -0.0071411133, y: 1.0939022, z: 0.6617098}
 --- !u!65 &5616115761682881645
 BoxCollider:
   m_ObjectHideFlags: 0

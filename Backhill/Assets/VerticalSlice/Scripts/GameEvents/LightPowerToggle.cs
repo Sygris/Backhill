@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightPowerToggle : MonoBehaviour
 {
-    public float interval = 1.0f;
+    [SerializeField] private float interval;
     private float currentTime = 0.0f;
     private Light _myLight;
     private bool IsLightOff;
@@ -12,7 +12,7 @@ public class LightPowerToggle : MonoBehaviour
     void Start()
     {
         _myLight = GetComponent<Light>();
-        IsLightOff = false;
+        IsLightOff = true;
     }
 
     void Update()
@@ -23,15 +23,7 @@ public class LightPowerToggle : MonoBehaviour
         {
             IsLightOff = !IsLightOff;
             currentTime = 0.0f;
-        }
-
-        if (IsLightOff)
-        {
-            _myLight.enabled = false;
-        }
-        else
-        {
-            _myLight.enabled = true;
+            _myLight.enabled = IsLightOff;
         }
     }
 }

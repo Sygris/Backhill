@@ -67,4 +67,11 @@ public class GameEvents : MonoBehaviour
         if (TriggerNewScene != null)
             TriggerNewScene();
     }
+
+    public event Action TriggerSkyboxChange;
+    public void ChangeScene()
+    {
+        if (TriggerSkyboxChange != null)
+            TriggerSkyboxChange();
+    }
 }
