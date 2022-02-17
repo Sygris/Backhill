@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbd9d459a5b2154dadb183c9b765bac, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 591191539302687133, guid: 48bc88bf3eab3814092bb993ace15f00, type: 3}
   itemType: 0
   name: Axe
   description: Axe used to behead Lewis.

@@ -6,31 +6,33 @@ public class InventoryObject : ScriptableObject
 {
     public List<InventorySlot> container = new List<InventorySlot>();
 
-    public void AddItem(ItemObject _item, int _amount)
+    public void AddItem(ItemObject item, int amount)
     {
-        bool hasItem = false;
-
         for (int i = 0; i < container.Count; i++)
         {
-            if (container[i].item == _item)
+            if (container[i].item == item)
             {
-                container[i].AddAmount(_amount);
-                hasItem = true;
+                container[i].AddAmount(amount);
                 break;
             }
         }
 
-        if (!hasItem)
+        SetEmptySlot(item, amount);
+    }
+
+    public InventorySlot SetEmptySlot(ItemObject item, int amount)
+    {
+        for (int i = 0; i < container.Count; i++)
         {
-            for (int i = 0; i < container.Count; i++)
+            if (container[i].item == null)
             {
-                if (container[i].item == null)
-                {
-                    container[i] = new InventorySlot(_item, _amount);
-                    break;
-                }
+                container[i].UpdateSlot(item, amount);
+                return container[i];
             }
         }
+
+        // FUTURE: Handle inventory full
+        return null;
     }
 }
 
@@ -44,6 +46,12 @@ public class InventorySlot
     {
         item = _item;
         amount = _amount;
+    }
+
+    public void UpdateSlot(ItemObject newItem, int newAmount)
+    {
+        item = newItem;
+        amount = newAmount;
     }
 
     public void AddAmount(int value)
