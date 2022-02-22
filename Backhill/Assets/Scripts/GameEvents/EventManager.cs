@@ -2,35 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[System.Serializable]
-//public class EventAction
-//{
-//    [SerializeReference] public List<Event> events = new List<Event>();
-//    [SerializeField] public bool complete = false;
-//}
-
 public class EventManager : MonoBehaviour
 {
-    //[SerializeReference] public List<EventAction> actions = new List<EventAction>();
+    public enum ColliderMenu
+    {
+        Trigger,
+        Toggle
+    }; public ColliderMenu ColliderType;
 
+    [SerializeField] private string _eventName;
     private GameObject _emptyObject;
 
-    [Header("Trigger Animation")]
-    [SerializeField] private string _name;
-    [SerializeField] private Vector3 _location;
-
-    public void MakeTriggerCollider()
+    public void MakeEventCollider()
     {
-        GameObject _collider = new GameObject(_name);
+        GameObject _collider = new GameObject(ColliderType.ToString() + ": " + _eventName);
         _collider.transform.parent = transform;
         _collider.AddComponent<BoxCollider>();
-        _collider.GetComponent<BoxCollider>().transform.position = _location;
         _collider.GetComponent<BoxCollider>().isTrigger = true;
-        _collider.AddComponent<TriggerAnimation>();
-    }
 
-    public void MakeToggleCollider()
-    {
-
+        switch (ColliderType)
+        {
+            case ColliderMenu.Trigger:
+                _collider.AddComponent<TriggerEventManager>();
+                _collider.AddComponent<TriggerEvent>();
+                break;
+            case ColliderMenu.Toggle:
+                _collider.AddComponent<ToggleEventManager>();
+                _collider.AddComponent<ToggleEvent>();
+                break;
+            default:
+                break;
+        }
     }
 }
