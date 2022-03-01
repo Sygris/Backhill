@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8629059941208993763}
   - component: {fileID: 5774849498933123881}
   - component: {fileID: 6735676780501195122}
-  - component: {fileID: 8111381673887341488}
   m_Layer: 0
   m_Name: Books_09
   m_TagString: Untagged
@@ -57,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!205 &6735676780501195122
 LODGroup:
   m_ObjectHideFlags: 0
@@ -100,16 +101,3 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5774849498933123881}
   m_Enabled: 1
---- !u!65 &8111381673887341488
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5414627980656769788}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.24537447, y: 0.3610828, z: 0.37811}
-  m_Center: {x: -0.12028958, y: 0.17350683, z: 0.18645483}
