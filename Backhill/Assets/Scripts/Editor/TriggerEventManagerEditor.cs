@@ -25,6 +25,9 @@ public class TriggerEventManagerEditor : Editor
             case TriggerEventManager.TriggerEventType.Animation:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("TriggerAnimation"));
                 break;
+            case TriggerEventManager.TriggerEventType.Scene:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("TriggerNewScene"));
+                break;
             default:
                 break;
         }

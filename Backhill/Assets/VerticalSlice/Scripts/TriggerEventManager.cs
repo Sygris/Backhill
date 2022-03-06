@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerEventManager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class TriggerEventManager : MonoBehaviour
     {
         Status,
         Message,
-        Animation
+        Animation,
+        Scene
     }; public TriggerEventType TriggerMenu;
 
     #region TriggerActions
@@ -22,7 +24,10 @@ public class TriggerEventManager : MonoBehaviour
         {
             foreach (GameObject item in _targetObjects)
             {
-                item.SetActive(false);
+                if (item.activeInHierarchy)
+                    item.SetActive(false);
+                else
+                    item.SetActive(true);
             }
         }
     }
@@ -56,6 +61,19 @@ public class TriggerEventManager : MonoBehaviour
             }
         }
     }
+
+
+    public NewSceneParameters TriggerNewScene;
+    [System.Serializable]
+    public class NewSceneParameters
+    {
+        [SerializeField] private int _targetBuildIndex;
+
+        public void ExecuteAction()
+        {
+            SceneManager.LoadScene(_targetBuildIndex);
+        }
+    }
     #endregion
 
     public void ExecuteTriggerEvent()
@@ -70,6 +88,9 @@ public class TriggerEventManager : MonoBehaviour
                 break;
             case TriggerEventType.Animation:
                 TriggerAnimation.ExecuteAction();
+                break;
+            case TriggerEventType.Scene:
+                TriggerNewScene.ExecuteAction();
                 break;
             default:
                 break;
