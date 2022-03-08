@@ -12,9 +12,10 @@ public enum AIStates
 
 public class EnemyAI : MonoBehaviour
 {
-    public AIStates _currentState;
+    public AIStates CurrentState;
 
     private Node _rootNode;
+
     private NavMeshAgent _agent;
     private GameObject _player;
     private Transform _lastPlayerPosition;
@@ -23,10 +24,20 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _pauseTime;
     [SerializeField] private List<Transform> _listOfNodes = new List<Transform>();
 
-    public float MinDistance;
+    public float MinWaypointDistance;
+    public float MinPlayerDistance;
     public int CurrentNode;
     public bool IsPaused;
-    public float MinPlayerDistance;
+    public bool CanSeePlayer;
+
+    public float DetectionRadius;
+    [Range(0, 360)]
+    public float FOVAngle;
+
+    public float AttackDistance;
+
+    public LayerMask _playerLayer;
+    public LayerMask _obstructionLayer;
 
     void Start()
     {
@@ -42,23 +53,41 @@ public class EnemyAI : MonoBehaviour
 
     private void BuildBehaviourTree()
     {
-        GoToLocation goToWaypoint = new GoToLocation(this, GetWaypointPosition().gameObject);
-        GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
+        ContinuePatrol goToNextWaypoint = new ContinuePatrol(this);
 
-        CheckState checkPatrolState = new CheckState(_currentState, AIStates.Patrol);
-        CheckState checkSearchState = new CheckState(_currentState, AIStates.Search);
-        CheckState checkAggroState = new CheckState(_currentState, AIStates.Aggro);
+        GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this);
+
+        //GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
+
+        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
+        CheckState checkSearchState = new CheckState(this, AIStates.Search);
+        CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
 
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
         UpdateState updateStateToAggro = new UpdateState(this, AIStates.Aggro);
 
-        _rootNode = new Selector(new List<Node> { goToWaypoint });
+        PlayerInChaseDistance playerWithinDistance = new PlayerInChaseDistance(this);
+
+        PlayerDetection detectPlayer = new PlayerDetection(this);
+
+        SetPlayerPosition updatePlayerPosition = new SetPlayerPosition(this);
+
+        AttackPlayer attack = new AttackPlayer(this);
+
+        Selector SearchForPlayer = new Selector(new List<Node> { updateStateToSearch, goToLastPositon });
+        Sequence AttackPlayer = new Sequence(new List<Node> { checkAggroState, attack });
+        Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, playerWithinDistance });
+        Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint });
+        Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
+        Sequence FindPlayer = new Sequence(new List<Node> { checkAggroState, SearchForPlayer });
+
+        _rootNode = new Selector(new List<Node> { ChasePlayer, Patrol });
     }
 
     public void AtNode()
     {
-        StartCoroutine(Pause(_pauseTime));
+        StartCoroutine(WaypointPause(_pauseTime));
     }
 
     private void UpdateWaypoint()
@@ -70,6 +99,8 @@ public class EnemyAI : MonoBehaviour
 
         if (CurrentNode == _listOfNodes.Capacity)
             CurrentNode = CurrentNode % _listOfNodes.Count;
+
+        GetWaypointPosition();
     }
 
     public void MoveTo(GameObject target)
@@ -77,7 +108,7 @@ public class EnemyAI : MonoBehaviour
         _agent.destination = target.transform.position;
     }
 
-    private IEnumerator Pause(float delay)
+    private IEnumerator WaypointPause(float delay)
     {
         _agent.speed = 0.0f;
         IsPaused = true;
@@ -89,10 +120,10 @@ public class EnemyAI : MonoBehaviour
 
     public void UpdateState(AIStates targetState)
     {
-        _currentState = targetState;
+        CurrentState = targetState;
     }
 
     public Transform GetWaypointPosition() { return _listOfNodes[CurrentNode]; }
     public Transform GetPlayerPosition() { return _player.transform; }
-    public void SetLastPlayerPosition() { _lastPlayerPosition = _player.transform; }
+    public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerPosition(); }
 }

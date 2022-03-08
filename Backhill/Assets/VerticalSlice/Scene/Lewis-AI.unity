@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 816693230}
   - component: {fileID: 816693228}
   - component: {fileID: 816693229}
+  - component: {fileID: 816693231}
   m_Layer: 0
   m_Name: AI
   m_TagString: AI
@@ -546,7 +547,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
@@ -564,16 +565,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa7c1047db85b7419e0d1b62570fa5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
   _speed: 3
-  _pauseTime: 1
+  _pauseTime: 2
   _listOfNodes:
   - {fileID: 1282164035}
   - {fileID: 1781039745}
   - {fileID: 1388794721}
   - {fileID: 585709529}
-  MinDistance: 0.5
+  MinWaypointDistance: 0.5
+  MinPlayerDistance: 10
   CurrentNode: 0
   IsPaused: 0
+  DetectionRadius: 0
+  FOVAngle: 100
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!54 &816693230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -590,6 +601,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &816693231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816693223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce813a2b6a0dcb648b1b7b8bd8717772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  viewAngle: 100
+  detectionRadius: 5
 --- !u!1001 &1010119335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -660,7 +691,7 @@ GameObject:
   - component: {fileID: 1094078626}
   - component: {fileID: 1094078625}
   - component: {fileID: 1094078624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +937,7 @@ GameObject:
   - component: {fileID: 1510961768}
   - component: {fileID: 1510961767}
   - component: {fileID: 1510961766}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1002,7 +1033,7 @@ GameObject:
   - component: {fileID: 1563509767}
   - component: {fileID: 1563509766}
   - component: {fileID: 1563509765}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}

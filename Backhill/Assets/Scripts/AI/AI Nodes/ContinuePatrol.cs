@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoToLocation : Node
+public class ContinuePatrol : Node
 {
     private EnemyAI _agent;
 
-    public GoToLocation(EnemyAI agent)
+    public ContinuePatrol(EnemyAI agent)
     {
         _agent = agent;
     }
