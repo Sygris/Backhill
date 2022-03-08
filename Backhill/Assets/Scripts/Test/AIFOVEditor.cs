@@ -16,6 +16,5 @@ public class AIFOVEditor : Editor
         Handles.DrawLine(detection.transform.position, detection.transform.position + viewAngleB * detection.detectionRadius);
 
         Handles.color = Color.yellow;
-
     }
 }

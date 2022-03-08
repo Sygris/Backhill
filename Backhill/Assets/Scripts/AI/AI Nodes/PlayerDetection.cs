@@ -13,7 +13,7 @@ public class PlayerDetection : Node
 
     public override NodeState Decision()
     {
-        Collider[] detectionCheck = Physics.OverlapSphere(_agent.transform.position, _agent.Radius, _agent._playerLayer);
+        Collider[] detectionCheck = Physics.OverlapSphere(_agent.transform.position, _agent.DetectionRadius, _agent._playerLayer);
 
         if (detectionCheck.Length != 0)
         {
@@ -25,14 +25,26 @@ public class PlayerDetection : Node
                 float distanceOfTarget = Vector3.Distance(_agent.transform.position, target.position);
 
                 if (!Physics.Raycast(_agent.transform.position, directionOfTarget, distanceOfTarget, _agent._obstructionLayer))
+                {
+                    _agent.CanSeePlayer = true;
                     return NodeState.SUCCESS;
+                }
                 else
+                {
+                    _agent.CanSeePlayer = false;
                     return NodeState.FAILURE;
+                }
             }
             else
+            {
+                _agent.CanSeePlayer = false;
                 return NodeState.FAILURE;
+            }
         }
         else
+        {
+            _agent.CanSeePlayer = false;
             return NodeState.FAILURE;
+        }
     }
 }

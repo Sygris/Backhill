@@ -560,7 +560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816693223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffa7c1047db85b7419e0d1b62570fa5a, type: 3}
   m_Name: 
@@ -577,14 +577,14 @@ MonoBehaviour:
   MinPlayerDistance: 10
   CurrentNode: 0
   IsPaused: 0
-  Radius: 0
+  DetectionRadius: 0
   FOVAngle: 100
   _playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _obstructionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!54 &816693230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -615,12 +615,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
-  viewAngle: 0
-  detectionRadius: 0
+    m_Bits: 128
+  viewAngle: 100
+  detectionRadius: 5
 --- !u!1001 &1010119335
 PrefabInstance:
   m_ObjectHideFlags: 0

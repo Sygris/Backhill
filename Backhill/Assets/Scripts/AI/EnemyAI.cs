@@ -28,10 +28,13 @@ public class EnemyAI : MonoBehaviour
     public float MinPlayerDistance;
     public int CurrentNode;
     public bool IsPaused;
+    public bool CanSeePlayer;
 
-    public float Radius;
+    public float DetectionRadius;
     [Range(0, 360)]
     public float FOVAngle;
+
+    public float AttackDistance;
 
     public LayerMask _playerLayer;
     public LayerMask _obstructionLayer;
@@ -52,6 +55,8 @@ public class EnemyAI : MonoBehaviour
     {
         ContinuePatrol goToNextWaypoint = new ContinuePatrol(this);
 
+        GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this);
+
         //GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
 
         CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
@@ -64,15 +69,25 @@ public class EnemyAI : MonoBehaviour
 
         PlayerInChaseDistance playerWithinDistance = new PlayerInChaseDistance(this);
 
+        PlayerDetection detectPlayer = new PlayerDetection(this);
+
+        SetPlayerPosition updatePlayerPosition = new SetPlayerPosition(this);
+
+        AttackPlayer attack = new AttackPlayer(this);
+
+        Selector SearchForPlayer = new Selector(new List<Node> { updateStateToSearch, goToLastPositon });
+        Sequence AttackPlayer = new Sequence(new List<Node> { checkAggroState, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, playerWithinDistance });
         Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint });
+        Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
+        Sequence FindPlayer = new Sequence(new List<Node> { checkAggroState, SearchForPlayer });
 
         _rootNode = new Selector(new List<Node> { ChasePlayer, Patrol });
     }
 
     public void AtNode()
     {
-        StartCoroutine(Pause(_pauseTime));
+        StartCoroutine(WaypointPause(_pauseTime));
     }
 
     private void UpdateWaypoint()
@@ -93,7 +108,7 @@ public class EnemyAI : MonoBehaviour
         _agent.destination = target.transform.position;
     }
 
-    private IEnumerator Pause(float delay)
+    private IEnumerator WaypointPause(float delay)
     {
         _agent.speed = 0.0f;
         IsPaused = true;
@@ -110,5 +125,5 @@ public class EnemyAI : MonoBehaviour
 
     public Transform GetWaypointPosition() { return _listOfNodes[CurrentNode]; }
     public Transform GetPlayerPosition() { return _player.transform; }
-    public void SetLastPlayerPosition() { _lastPlayerPosition = _player.transform; }
+    public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerPosition(); }
 }
