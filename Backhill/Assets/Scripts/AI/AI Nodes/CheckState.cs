@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CheckState : Node
 {
-    private AIStates _currentState;
+    private EnemyAI _agent;
     private AIStates _targetState;
 
-    public CheckState(AIStates currentState, AIStates targetState)
+    public CheckState(EnemyAI agent, AIStates targetState)
     {
-        _currentState = currentState;
+        _agent = agent;
         _targetState = targetState;
     }
 
     public override NodeState Decision()
     {
-        if (_currentState != _targetState)
+        if (_agent.CurrentState == _targetState)
             return NodeState.SUCCESS;
         else
             return NodeState.FAILURE;

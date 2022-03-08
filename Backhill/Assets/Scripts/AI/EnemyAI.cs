@@ -12,9 +12,10 @@ public enum AIStates
 
 public class EnemyAI : MonoBehaviour
 {
-    public AIStates _currentState;
+    public AIStates CurrentState;
 
     private Node _rootNode;
+
     private NavMeshAgent _agent;
     private GameObject _player;
     private Transform _lastPlayerPosition;
@@ -23,10 +24,17 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _pauseTime;
     [SerializeField] private List<Transform> _listOfNodes = new List<Transform>();
 
-    public float MinDistance;
+    public float MinWaypointDistance;
+    public float MinPlayerDistance;
     public int CurrentNode;
     public bool IsPaused;
-    public float MinPlayerDistance;
+
+    public float Radius;
+    [Range(0, 360)]
+    public float FOVAngle;
+
+    public LayerMask _playerLayer;
+    public LayerMask _obstructionLayer;
 
     void Start()
     {
@@ -42,18 +50,24 @@ public class EnemyAI : MonoBehaviour
 
     private void BuildBehaviourTree()
     {
-        GoToLocation goToWaypoint = new GoToLocation(this, GetWaypointPosition().gameObject);
-        GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
+        ContinuePatrol goToNextWaypoint = new ContinuePatrol(this);
 
-        CheckState checkPatrolState = new CheckState(_currentState, AIStates.Patrol);
-        CheckState checkSearchState = new CheckState(_currentState, AIStates.Search);
-        CheckState checkAggroState = new CheckState(_currentState, AIStates.Aggro);
+        //GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
+
+        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
+        CheckState checkSearchState = new CheckState(this, AIStates.Search);
+        CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
 
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
         UpdateState updateStateToAggro = new UpdateState(this, AIStates.Aggro);
 
-        _rootNode = new Selector(new List<Node> { goToWaypoint });
+        PlayerInChaseDistance playerWithinDistance = new PlayerInChaseDistance(this);
+
+        Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, playerWithinDistance });
+        Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint });
+
+        _rootNode = new Selector(new List<Node> { ChasePlayer, Patrol });
     }
 
     public void AtNode()
@@ -70,6 +84,8 @@ public class EnemyAI : MonoBehaviour
 
         if (CurrentNode == _listOfNodes.Capacity)
             CurrentNode = CurrentNode % _listOfNodes.Count;
+
+        GetWaypointPosition();
     }
 
     public void MoveTo(GameObject target)
@@ -89,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 
     public void UpdateState(AIStates targetState)
     {
-        _currentState = targetState;
+        CurrentState = targetState;
     }
 
     public Transform GetWaypointPosition() { return _listOfNodes[CurrentNode]; }
