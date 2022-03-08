@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Prototype/Scripts/Input/Input.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/Input.inputactions'
 
 using System;
 using System.Collections;
@@ -46,6 +46,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""ac85140b-d084-49a6-b870-c3341a41e05d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""725ae061-98f0-4d7d-9a47-0bb0b3338da2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -139,6 +147,17 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ce080a4-45d1-4d3b-9156-cfa73169c459"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +170,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_CharacterControls_Look = m_CharacterControls.FindAction("Look", throwIfNotFound: true);
         m_CharacterControls_Torch = m_CharacterControls.FindAction("Torch", throwIfNotFound: true);
         m_CharacterControls_Menu = m_CharacterControls.FindAction("Menu", throwIfNotFound: true);
+        m_CharacterControls_Interact = m_CharacterControls.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +224,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_CharacterControls_Look;
     private readonly InputAction m_CharacterControls_Torch;
     private readonly InputAction m_CharacterControls_Menu;
+    private readonly InputAction m_CharacterControls_Interact;
     public struct CharacterControlsActions
     {
         private @Input m_Wrapper;
@@ -212,6 +233,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_CharacterControls_Look;
         public InputAction @Torch => m_Wrapper.m_CharacterControls_Torch;
         public InputAction @Menu => m_Wrapper.m_CharacterControls_Menu;
+        public InputAction @Interact => m_Wrapper.m_CharacterControls_Interact;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +255,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnMenu;
+                @Interact.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +274,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -259,5 +287,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnTorch(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

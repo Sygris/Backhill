@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 454022455}
   - component: {fileID: 454022454}
   - component: {fileID: 454022453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,6 +739,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &581591487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1159071463077304941, guid: 2365c4b4856c25340bdb711677d26f3b, type: 3}
+  m_PrefabInstance: {fileID: 1895422849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &581591491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581591487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd2c8450c74cf14f9d2af8673ea37be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractableLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!43 &745236727
 Mesh:
   m_ObjectHideFlags: 0
