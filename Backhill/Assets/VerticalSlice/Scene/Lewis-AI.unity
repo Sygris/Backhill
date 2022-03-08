@@ -444,8 +444,8 @@ GameObject:
   - component: {fileID: 816693225}
   - component: {fileID: 816693224}
   - component: {fileID: 816693230}
-  - component: {fileID: 816693231}
   - component: {fileID: 816693228}
+  - component: {fileID: 816693229}
   m_Layer: 0
   m_Name: AI
   m_TagString: AI
@@ -552,6 +552,28 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &816693229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816693223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa7c1047db85b7419e0d1b62570fa5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _pauseTime: 1
+  _listOfNodes:
+  - {fileID: 1282164035}
+  - {fileID: 1781039745}
+  - {fileID: 1388794721}
+  - {fileID: 585709529}
+  MinDistance: 0.5
+  CurrentNode: 0
+  IsPaused: 0
 --- !u!54 &816693230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -568,26 +590,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &816693231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816693223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a0d518a9eda0c48a6f5d2890352ce6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _listOfNodes:
-  - {fileID: 1282164035}
-  - {fileID: 1781039745}
-  - {fileID: 1388794721}
-  - {fileID: 585709529}
-  _pauseTime: 3
-  _patrolSpeed: 5
-  _minimumDistance: 2
 --- !u!1001 &1010119335
 PrefabInstance:
   m_ObjectHideFlags: 0
