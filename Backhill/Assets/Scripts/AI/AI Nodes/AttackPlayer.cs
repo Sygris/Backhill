@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AttackPlayer : Node
 {
     private EnemyAI _agent;
@@ -13,7 +9,7 @@ public class AttackPlayer : Node
 
     public override NodeState Decision()
     {
-        if (_agent.CanSeePlayer)
+        if (_agent.GetCanSeePlayerStatus())
             return NodeState.SUCCESS;
         else
             return NodeState.FAILURE;

@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CheckState : Node
 {
     private EnemyAI _agent;
+    private AIStates _currentState;
     private AIStates _targetState;
 
-    public CheckState(EnemyAI agent, AIStates targetState)
+    public CheckState(EnemyAI agent, AIStates currentState, AIStates targetState)
     {
         _agent = agent;
+        _currentState = currentState;
         _targetState = targetState;
     }
 
     public override NodeState Decision()
     {
-        if (_agent.CurrentState == _targetState)
+        if (_currentState == _targetState)
             return NodeState.SUCCESS;
         else
             return NodeState.FAILURE;

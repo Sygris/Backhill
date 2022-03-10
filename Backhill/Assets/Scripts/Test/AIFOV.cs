@@ -27,7 +27,7 @@ public class AIFOV : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position, dirToTarget, distance, obstacleMask))
                 {
-                    Debug.Log("Spotted");
+                    //Debug.Log("Spotted");
                 }
             }
         }

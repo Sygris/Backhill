@@ -13,35 +13,30 @@ public enum AIStates
 
 public class EnemyAI : MonoBehaviour
 {
-    public AIStates CurrentState;
+    [Header("Movement Information")]
+    [SerializeField] private float _patrolSpeed;
+    [SerializeField] private float _aggroSpeed;
+    [SerializeField] private float _pauseTime;
+    [SerializeField] private List<Transform> _listOfNodes = new List<Transform>();
 
+    [Header("Detection Information")]
+    [SerializeField] private float _minWaypointDistance;
+    [SerializeField] private float _detectionRadius;
+    [Range(0, 360)]
+    [SerializeField] private float _fovAngle;
+    [SerializeField] private float _attackDistance;
+    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private LayerMask _obstructionLayer;
+
+    public AIStates _currentState;
     private Node _rootNode;
-
     private NavMeshAgent _agent;
     private GameObject _player;
     private Transform _lastPlayerPosition;
     private Animator _aiAnimator;
 
-    private bool _isAttacking;
-
-    [SerializeField] private float _speed;
-    [SerializeField] private float _pauseTime;
-    [SerializeField] private List<Transform> _listOfNodes = new List<Transform>();
-
-    public float MinWaypointDistance;
-    public float MinPlayerDistance;
-    public int CurrentNode;
-    public bool IsPaused;
-    public bool CanSeePlayer;
-
-    public float DetectionRadius;
-    [Range(0, 360)]
-    public float FOVAngle;
-
-    public float AttackDistance;
-
-    public LayerMask _playerLayer;
-    public LayerMask _obstructionLayer;
+    private int _currentNode;
+    private bool _isAttacking, _isPaused, _canSeePlayer;
 
     void Start()
     {
@@ -54,44 +49,45 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         _rootNode.Decision();
+
+        if (_currentState == AIStates.Aggro)
+            _agent.speed = _aggroSpeed;
+        else
+            _agent.speed = _patrolSpeed;
     }
 
     private void BuildBehaviourTree()
     {
-        ContinuePatrol goToNextWaypoint = new ContinuePatrol(this);
+        ContinuePatrol goToNextWaypoint = new ContinuePatrol(this, _minWaypointDistance);
 
-        GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this);
+        GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this, _attackDistance);
 
-        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
-        CheckState checkSearchState = new CheckState(this, AIStates.Search);
-        CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
-        CheckState checkAttackState = new CheckState(this, AIStates.Attack);
-
-        CheckNotState checkNotPatrolState = new CheckNotState(this, AIStates.Patrol);
-        CheckNotState checkNotSearchState = new CheckNotState(this, AIStates.Search);
-        CheckNotState checkNotAggroState = new CheckNotState(this, AIStates.Aggro);
+        //CheckState checkPatrolState = new CheckState(this, GetAIState(), AIStates.Patrol);
+        //CheckState checkSearchState = new CheckState(this, GetAIState(), AIStates.Search);
+        CheckState checkAggroState = new CheckState(this, GetAIState(), AIStates.Aggro);
+        CheckState checkAttackState = new CheckState(this, GetAIState(), AIStates.Attack);
 
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
         UpdateState updateStateToAggro = new UpdateState(this, AIStates.Aggro);
         UpdateState updateStateToAttack = new UpdateState(this, AIStates.Attack);
 
-        PlayerInChaseDistance playerWithinDistance = new PlayerInChaseDistance(this);
+        PlayerInChaseDistance playerWithinAttackingDistance = new PlayerInChaseDistance(this, _attackDistance);
 
-        PlayerDetection detectPlayer = new PlayerDetection(this);
+        PlayerDetection detectPlayer = new PlayerDetection(this, _detectionRadius, _fovAngle, _playerLayer, _obstructionLayer);
 
         SetPlayerPosition updatePlayerPosition = new SetPlayerPosition(this);
 
         AttackPlayer attack = new AttackPlayer(this);
 
         Sequence SearchForPlayer = new Sequence(new List<Node> { checkAggroState, updateStateToSearch, goToLastPositon });
-        Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, goToLastPositon, attack });
-        Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, detectPlayer, goToLastPositon, playerWithinDistance });
-        Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint });
+        Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
+        Sequence ChasePlayer = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition, goToLastPositon, updateStateToAttack });
+        Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
         Selector FindPlayer = new Selector(new List<Node> { GetPlayerData, SearchForPlayer });
 
-        _rootNode = new Selector(new List<Node> { ChasePlayer, FindPlayer, Patrol });
+        _rootNode = new Selector(new List<Node> { AttackPlayer, ChasePlayer, Patrol });
     }
 
     public void AtNode()
@@ -103,11 +99,11 @@ public class EnemyAI : MonoBehaviour
     {
         if (_listOfNodes.Count == 0) return;
 
-        _agent.destination = _listOfNodes[CurrentNode].position;
-        ++CurrentNode;
+        _agent.destination = _listOfNodes[_currentNode].position;
+        ++_currentNode;
 
-        if (CurrentNode == _listOfNodes.Capacity)
-            CurrentNode = CurrentNode % _listOfNodes.Count;
+        if (_currentNode == _listOfNodes.Capacity)
+            _currentNode = _currentNode % _listOfNodes.Count;
 
         GetWaypointPosition();
     }
@@ -120,22 +116,21 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator WaypointPause(float delay)
     {
         _agent.speed = 0.0f;
-        IsPaused = true;
+        _isPaused = true;
         yield return new WaitForSeconds(delay);
-        _agent.speed = _speed;
-        IsPaused = false;
+        _agent.speed = _patrolSpeed;
+        _isPaused = false;
         UpdateWaypoint();
     }
 
     public void UpdateState(AIStates targetState)
     {
-        CurrentState = targetState;
+        _currentState = targetState;
     }
 
     public void AttackAnimation()
     {
         _aiAnimator.SetTrigger("Attack");
-
     }
 
     private IEnumerator PauseWhileAttack(Animation animation)
@@ -149,14 +144,28 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                _agent.speed = _speed;
+                _agent.speed = _patrolSpeed;
                 _isAttacking = false;
             }
             yield return null;
         } while (!_isAttacking);
     }
 
-    public Transform GetWaypointPosition() { return _listOfNodes[CurrentNode]; }
+    public AIStates GetAIState() { return _currentState; }
+
+    public void SetAIState(AIStates state) { _currentState = state; }
+
+    public Transform GetWaypointPosition() { return _listOfNodes[_currentNode]; }
     public Transform GetPlayerPosition() { return _player.transform; }
+
+    public bool GetIsPausedStatus() { return _isPaused; }
+    public bool GetCanSeePlayerStatus() { return _canSeePlayer; }
+    public bool GetIsAttackingStatus() { return _isAttacking; }
+
+    public void SetWaypointPosition(int nodeValue) { _currentNode = nodeValue; }
     public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerPosition(); }
+
+    public void SetIsPausedStatus(bool status) { _isPaused = status; }
+    public void SetIsAttackingStatus(bool status) { _isAttacking = status; }
+    public void SetIsCanSeePlayerStatus(bool status) { _canSeePlayer = status; }
 }
