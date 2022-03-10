@@ -13,6 +13,7 @@ public enum AIStates
 
 public class EnemyAI : MonoBehaviour
 {
+    #region Variables
     [Header("Movement Information")]
     [SerializeField] private float _patrolSpeed;
     [SerializeField] private float _aggroSpeed;
@@ -37,6 +38,27 @@ public class EnemyAI : MonoBehaviour
 
     private int _currentNode;
     private bool _isAttacking, _isPaused, _canSeePlayer;
+    #endregion
+
+    #region GettersAndSetters
+    public AIStates GetAIState() { return _currentState; }
+
+    public void SetAIState(AIStates state) { _currentState = state; }
+
+    public Transform GetWaypointPosition() { return _listOfNodes[_currentNode]; }
+    public Transform GetPlayerPosition() { return _player.transform; }
+
+    public bool GetIsPausedStatus() { return _isPaused; }
+    public bool GetCanSeePlayerStatus() { return _canSeePlayer; }
+    public bool GetIsAttackingStatus() { return _isAttacking; }
+
+    public void SetWaypointPosition(int nodeValue) { _currentNode = nodeValue; }
+    public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerPosition(); }
+
+    public void SetIsPausedStatus(bool status) { _isPaused = status; }
+    public void SetIsAttackingStatus(bool status) { _isAttacking = status; }
+    public void SetIsCanSeePlayerStatus(bool status) { _canSeePlayer = status; }
+    #endregion
 
     void Start()
     {
@@ -58,12 +80,13 @@ public class EnemyAI : MonoBehaviour
 
     private void BuildBehaviourTree()
     {
+        #region Nodes
         ContinuePatrol goToNextWaypoint = new ContinuePatrol(this, _minWaypointDistance);
 
         GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this, _attackDistance);
 
-        //CheckState checkPatrolState = new CheckState(this, GetAIState(), AIStates.Patrol);
-        //CheckState checkSearchState = new CheckState(this, GetAIState(), AIStates.Search);
+        CheckState checkPatrolState = new CheckState(this, GetAIState(), AIStates.Patrol);
+        CheckState checkSearchState = new CheckState(this, GetAIState(), AIStates.Search);
         CheckState checkAggroState = new CheckState(this, GetAIState(), AIStates.Aggro);
         CheckState checkAttackState = new CheckState(this, GetAIState(), AIStates.Attack);
 
@@ -79,17 +102,21 @@ public class EnemyAI : MonoBehaviour
         SetPlayerPosition updatePlayerPosition = new SetPlayerPosition(this);
 
         AttackPlayer attack = new AttackPlayer(this);
+        #endregion
 
+        #region ParentNodes
         Sequence SearchForPlayer = new Sequence(new List<Node> { checkAggroState, updateStateToSearch, goToLastPositon });
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
         Selector FindPlayer = new Selector(new List<Node> { GetPlayerData, SearchForPlayer });
+        #endregion
 
         _rootNode = new Selector(new List<Node> { AttackPlayer, ChasePlayer, Patrol });
     }
 
+    #region AIFunctionality
     public void AtNode()
     {
         StartCoroutine(WaypointPause(_pauseTime));
@@ -150,22 +177,5 @@ public class EnemyAI : MonoBehaviour
             yield return null;
         } while (!_isAttacking);
     }
-
-    public AIStates GetAIState() { return _currentState; }
-
-    public void SetAIState(AIStates state) { _currentState = state; }
-
-    public Transform GetWaypointPosition() { return _listOfNodes[_currentNode]; }
-    public Transform GetPlayerPosition() { return _player.transform; }
-
-    public bool GetIsPausedStatus() { return _isPaused; }
-    public bool GetCanSeePlayerStatus() { return _canSeePlayer; }
-    public bool GetIsAttackingStatus() { return _isAttacking; }
-
-    public void SetWaypointPosition(int nodeValue) { _currentNode = nodeValue; }
-    public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerPosition(); }
-
-    public void SetIsPausedStatus(bool status) { _isPaused = status; }
-    public void SetIsAttackingStatus(bool status) { _isAttacking = status; }
-    public void SetIsCanSeePlayerStatus(bool status) { _canSeePlayer = status; }
+    #endregion
 }
