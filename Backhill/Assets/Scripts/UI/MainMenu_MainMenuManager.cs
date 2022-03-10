@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class MainMenu_MainMenuManager : MonoBehaviour
 {
     [Header("Settings Objects")]
     [SerializeField] private GameObject _settingsManager;
