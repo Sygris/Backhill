@@ -7,7 +7,8 @@ public enum AIStates
 {
     Patrol,
     Search,
-    Aggro
+    Aggro,
+    Attack
 };
 
 public class EnemyAI : MonoBehaviour
@@ -19,6 +20,9 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent _agent;
     private GameObject _player;
     private Transform _lastPlayerPosition;
+    private Animator _aiAnimator;
+
+    private bool _isAttacking;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _pauseTime;
@@ -44,6 +48,7 @@ public class EnemyAI : MonoBehaviour
         BuildBehaviourTree();
         _player = GameObject.FindGameObjectWithTag("Player");
         _agent = GetComponent<NavMeshAgent>();
+        _aiAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -57,15 +62,19 @@ public class EnemyAI : MonoBehaviour
 
         GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this);
 
-        //GoToLocation goToPlayer = new GoToLocation(this, GetPlayerPosition().gameObject);
-
         CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
         CheckState checkSearchState = new CheckState(this, AIStates.Search);
         CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
+        CheckState checkAttackState = new CheckState(this, AIStates.Attack);
+
+        CheckNotState checkNotPatrolState = new CheckNotState(this, AIStates.Patrol);
+        CheckNotState checkNotSearchState = new CheckNotState(this, AIStates.Search);
+        CheckNotState checkNotAggroState = new CheckNotState(this, AIStates.Aggro);
 
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
         UpdateState updateStateToAggro = new UpdateState(this, AIStates.Aggro);
+        UpdateState updateStateToAttack = new UpdateState(this, AIStates.Attack);
 
         PlayerInChaseDistance playerWithinDistance = new PlayerInChaseDistance(this);
 
@@ -75,14 +84,14 @@ public class EnemyAI : MonoBehaviour
 
         AttackPlayer attack = new AttackPlayer(this);
 
-        Selector SearchForPlayer = new Selector(new List<Node> { updateStateToSearch, goToLastPositon });
-        Sequence AttackPlayer = new Sequence(new List<Node> { checkAggroState, attack });
-        Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, playerWithinDistance });
+        Sequence SearchForPlayer = new Sequence(new List<Node> { checkAggroState, updateStateToSearch, goToLastPositon });
+        Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, goToLastPositon, attack });
+        Sequence ChasePlayer = new Sequence(new List<Node> { checkAggroState, detectPlayer, goToLastPositon, playerWithinDistance });
         Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint });
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
-        Sequence FindPlayer = new Sequence(new List<Node> { checkAggroState, SearchForPlayer });
+        Selector FindPlayer = new Selector(new List<Node> { GetPlayerData, SearchForPlayer });
 
-        _rootNode = new Selector(new List<Node> { ChasePlayer, Patrol });
+        _rootNode = new Selector(new List<Node> { ChasePlayer, FindPlayer, Patrol });
     }
 
     public void AtNode()
@@ -121,6 +130,30 @@ public class EnemyAI : MonoBehaviour
     public void UpdateState(AIStates targetState)
     {
         CurrentState = targetState;
+    }
+
+    public void AttackAnimation()
+    {
+        _aiAnimator.SetTrigger("Attack");
+
+    }
+
+    private IEnumerator PauseWhileAttack(Animation animation)
+    {
+        do
+        {
+            if (animation.isPlaying)
+            {
+                _agent.speed = 0.0f;
+                _isAttacking = true;
+            }
+            else
+            {
+                _agent.speed = _speed;
+                _isAttacking = false;
+            }
+            yield return null;
+        } while (!_isAttacking);
     }
 
     public Transform GetWaypointPosition() { return _listOfNodes[CurrentNode]; }

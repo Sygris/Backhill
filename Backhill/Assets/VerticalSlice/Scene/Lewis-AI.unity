@@ -577,8 +577,10 @@ MonoBehaviour:
   MinPlayerDistance: 10
   CurrentNode: 0
   IsPaused: 0
-  DetectionRadius: 0
+  CanSeePlayer: 0
+  DetectionRadius: 5
   FOVAngle: 100
+  AttackDistance: 2
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1015,7 +1017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510961765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.13, y: 1.2, z: 2.64}
+  m_LocalPosition: {x: 1.66, y: 1.2, z: 1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

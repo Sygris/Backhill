@@ -20,7 +20,7 @@ public class PlayerDetection : Node
             Transform target = detectionCheck[0].transform;
             Vector3 directionOfTarget = (target.position - _agent.transform.position).normalized;
 
-            if (Vector3.Angle(_agent.transform.position, directionOfTarget) < _agent.FOVAngle / 2)
+            if (Vector3.Angle(_agent.transform.forward, directionOfTarget) < _agent.FOVAngle / 2)
             {
                 float distanceOfTarget = Vector3.Distance(_agent.transform.position, target.position);
 
