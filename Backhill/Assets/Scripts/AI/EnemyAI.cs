@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private LayerMask _obstructionLayer;
 
-    public AIStates _currentState;
+    private AIStates _currentState;
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -52,6 +52,7 @@ public class EnemyAI : MonoBehaviour
 
     public Transform GetWaypointPosition() { return _listOfNodes[_currentNode]; }
     public Transform GetPlayerCurrentPosition() { return _player.transform; }
+    public Transform GetPlayerLastPosition() { return _lastPlayerPosition; }
 
     public bool GetIsPausedStatus() { return _isPaused; }
     public bool GetCanSeePlayerStatus() { return _canSeePlayer; }
@@ -74,6 +75,10 @@ public class EnemyAI : MonoBehaviour
         _aiAnimator = GetComponent<Animator>();
         _origionalDectectonRaduis = _detectionRadius;
         _origionalFOVAngle = _fovAngle;
+
+        SetLastPlayerPosition();
+
+        _currentState = AIStates.Aggro;
     }
 
     void Update()
@@ -84,6 +89,9 @@ public class EnemyAI : MonoBehaviour
             _agent.speed = _aggroSpeed;
         else
             _agent.speed = _patrolSpeed;
+
+        Debug.Log(_detectionRadius);
+        Debug.Log(_fovAngle);
     }
 
     private void BuildBehaviourTree()
@@ -93,10 +101,10 @@ public class EnemyAI : MonoBehaviour
 
         GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this, _attackDistance);
 
-        CheckState checkPatrolState = new CheckState(this, GetAIState(), AIStates.Patrol);
-        CheckState checkSearchState = new CheckState(this, GetAIState(), AIStates.Search);
-        CheckState checkAggroState = new CheckState(this, GetAIState(), AIStates.Aggro);
-        CheckState checkAttackState = new CheckState(this, GetAIState(), AIStates.Attack);
+        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
+        CheckState checkSearchState = new CheckState(this, AIStates.Search);
+        CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
+        CheckState checkAttackState = new CheckState(this, AIStates.Attack);
 
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
@@ -118,14 +126,14 @@ public class EnemyAI : MonoBehaviour
 
         #region ParentNodes
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
-        Sequence SearchForPlayer = new Sequence(new List<Node> { checkAggroState, updateStateToSearch, goToLastPositon, playerSearch });
+        Sequence SearchForPlayer = new Sequence(new List<Node> { checkSearchState, goToLastPositon, playerSearch });
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
-        Sequence FindPlayer = new Sequence(new List<Node> { invertDetectPlayer, SearchForPlayer });
+        Sequence FindPlayer = new Sequence(new List<Node> { invertDetectPlayer, checkAggroState, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { FindPlayer/*AttackPlayer, ChasePlayer, Patrol*/ });
+        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer/*AttackPlayer, ChasePlayer, Patrol*/ });
     }
 
     #region AIFunctionality

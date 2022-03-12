@@ -567,7 +567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrolSpeed: 3
   _aggroSpeed: 8
-  _pauseTime: 2
+  _waypointPauseTime: 2
+  _searchPauseTime: 3
   _listOfNodes:
   - {fileID: 1282164035}
   - {fileID: 1781039745}
@@ -576,14 +577,15 @@ MonoBehaviour:
   _minWaypointDistance: 1
   _detectionRadius: 5
   _fovAngle: 100
-  _attackDistance: 1
+  _searchingDetectionRadius: 8
+  _searchingFOVAngle: 200
+  _attackDistance: 2
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
   _obstructionLayer:
     serializedVersion: 2
     m_Bits: 128
-  _currentState: 0
 --- !u!54 &816693230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1014,7 +1016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510961765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 1, z: 1.24}
+  m_LocalPosition: {x: -5, y: 1, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
