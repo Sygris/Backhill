@@ -13,10 +13,10 @@ public class PlayerInChaseDistance : Node
 
     public override NodeState Decision()
     {
-        float distance = Vector3.Distance(_agent.GetPlayerPosition().position, _agent.transform.position);
+        float distance = Vector3.Distance(_agent.GetPlayerCurrentPosition().position, _agent.transform.position);
         if (distance > _detectionRange) // If you're further than min distance move to the target
         {
-            _agent.MoveTo(_agent.GetPlayerPosition().gameObject);
+            _agent.MoveTo(_agent.GetPlayerCurrentPosition().gameObject);
             return NodeState.RUNNING;
         }
         else
