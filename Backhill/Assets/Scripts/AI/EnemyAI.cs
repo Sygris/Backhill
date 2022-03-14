@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private LayerMask _obstructionLayer;
 
-    private AIStates _currentState;
+    [SerializeField] private AIStates _currentState;
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -123,17 +123,18 @@ public class EnemyAI : MonoBehaviour
         #endregion
 
         Inverter invertDetectPlayer = new Inverter(detectPlayer);
+        Inverter invertCheckSearchState = new Inverter(checkSearchState);
 
         #region ParentNodes
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
-        Sequence SearchForPlayer = new Sequence(new List<Node> { checkSearchState, goToLastPositon, playerSearch });
+        Sequence SearchForPlayer = new Sequence(new List<Node> { checkSearchState, goToLastPositon, playerSearch, updateStateToPatrol });
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
-        Sequence FindPlayer = new Sequence(new List<Node> { invertDetectPlayer, checkAggroState, updateStateToSearch });
+        Sequence FindPlayer = new Sequence(new List<Node> { invertCheckSearchState, invertDetectPlayer, checkAggroState, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer/*AttackPlayer, ChasePlayer, Patrol*/ });
+        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer /*AttackPlayer, ChasePlayer, Patrol*/ });
     }
 
     #region AIFunctionality

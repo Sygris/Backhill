@@ -33,6 +33,7 @@ public class PlayerDetection : Node
                 if (!Physics.Raycast(_agent.transform.position, directionOfTarget, distanceOfTarget, _obstructionLayer))
                 {
                     _agent.SetIsCanSeePlayerStatus(true);
+                    _agent.SetLastPlayerPosition();
                     return NodeState.SUCCESS;
                 }
                 else
