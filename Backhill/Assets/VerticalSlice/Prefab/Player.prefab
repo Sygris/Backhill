@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 1159071462600511366}
   - component: {fileID: 1159071462600511367}
   - component: {fileID: 4756933290130952773}
+  - component: {fileID: 178686838}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -183,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 1159071462600511360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.951, y: 1.943, z: -2.2}
-  m_LocalScale: {x: 0.74521, y: 0.74521, z: 0.74521}
+  m_LocalScale: {x: 0.70891, y: 0.70891, z: 0.70891}
   m_Children:
   - {fileID: 1159071463077304914}
   - {fileID: 428302542}
@@ -205,7 +206,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159071462600511360}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 4756933290130952773}
-  _playerRotation: {fileID: 0}
+  _playerRotation: {fileID: 178686838}
   _pauseMenu: {fileID: 0}
   _torch: {fileID: 972204417}
 --- !u!114 &4756933290130952773
@@ -287,6 +288,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _gravity: -9.8
+--- !u!114 &178686838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159071462600511360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecb8a782896f0942855c17ef5566f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xSensivity: 30
+  _xRotationClampMax: 80
+  _xRotationClampMin: -80
+  _ySensivity: 30
 --- !u!1 &1159071463077304941
 GameObject:
   m_ObjectHideFlags: 0
