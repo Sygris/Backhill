@@ -15,10 +15,10 @@ public class GoToPlayersLastLocation : Node
     {
         if (_agent.GetPlayerLastPosition() != null)
         {
-            float distance = Vector3.Distance(_agent.GetPlayerLastPosition().position, _agent.transform.position); // Get player current pos
+            float distance = Vector3.Distance(_agent.GetPlayerLastPosition(), _agent.transform.position); // Get player current pos
             if (distance > _attackDistance) // If you're further than min distance move to the target
             {
-                _agent.MoveTo(_agent.GetPlayerLastPosition().gameObject);
+                _agent.MoveTo(_agent.GetPlayerLastPosition());
                 return NodeState.RUNNING;
             }
             else

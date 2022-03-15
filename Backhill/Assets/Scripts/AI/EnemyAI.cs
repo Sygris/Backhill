@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
-    private Transform _lastPlayerPosition;
+    private Vector3 _lastPlayerPosition;
     private Animator _aiAnimator;
 
     private int _currentNode;
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
 
     public Transform GetWaypointPosition() { return _listOfNodes[_currentNode]; }
     public Transform GetPlayerCurrentPosition() { return _player.transform; }
-    public Transform GetPlayerLastPosition() { return _lastPlayerPosition; }
+    public Vector3 GetPlayerLastPosition() { return _lastPlayerPosition; }
 
     public bool GetIsPausedStatus() { return _isPaused; }
     public bool GetCanSeePlayerStatus() { return _canSeePlayer; }
@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour
     public bool GetIsSeachingStatus() { return _isSearching; }
 
     public void SetWaypointPosition(int nodeValue) { _currentNode = nodeValue; }
-    public void SetLastPlayerPosition() { _lastPlayerPosition = GetPlayerCurrentPosition(); }
+    public void SetLastPlayerPosition() { _lastPlayerPosition = _player.transform.position; }
 
     public void SetIsPausedStatus(bool status) { _isPaused = status; }
     public void SetIsAttackingStatus(bool status) { _isAttacking = status; }
@@ -100,7 +100,6 @@ public class EnemyAI : MonoBehaviour
 
         GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this, _attackDistance);
 
-        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
         CheckState checkSearchState = new CheckState(this, AIStates.Search);
         CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
         CheckState checkAttackState = new CheckState(this, AIStates.Attack);
@@ -122,7 +121,6 @@ public class EnemyAI : MonoBehaviour
         #endregion
 
         Inverter invertDetectPlayer = new Inverter(detectPlayer);
-        Inverter invertCheckSearchState = new Inverter(checkSearchState);
 
         #region ParentNodes
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
@@ -133,7 +131,7 @@ public class EnemyAI : MonoBehaviour
         Sequence FindPlayer = new Sequence(new List<Node> {  checkAggroState, invertDetectPlayer, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { /*FindPlayer, SearchForPlayer,*/ AttackPlayer, ChasePlayer, Patrol });
+        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer, AttackPlayer, ChasePlayer, Patrol });
     }
 
     #region AIFunctionality
@@ -165,6 +163,11 @@ public class EnemyAI : MonoBehaviour
     public void MoveTo(GameObject target)
     {
         _agent.destination = target.transform.position;
+    }
+
+    public void MoveTo(Vector3 target)
+    {
+        _agent.destination = target;
     }
 
     private IEnumerator WaypointPause(float delay)
