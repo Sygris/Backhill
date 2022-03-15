@@ -7,6 +7,6 @@ public class MouseSensivity : MonoBehaviour
 
     public void AdjustMouseSensivity(float newSensivity)
     {
-        _playerMovement.MouseSensivity = newSensivity;
+        //_playerMovement.MouseSensivity = newSensivity;
     }
 }

@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Script References")]
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerRotation _playerRotation;
     [SerializeField] private PauseMenu _pauseMenu;
     [SerializeField] private Torch _torch;
 
@@ -22,10 +23,14 @@ public class PlayerInput : MonoBehaviour
         _playerInput.CharacterControls.Menu.performed += ctx => _pauseMenu.Toggle();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         _playerMovement.Move(_playerInput.CharacterControls.Movement.ReadValue<Vector2>());
-        _playerMovement.Rotate(_playerInput.CharacterControls.Look.ReadValue<Vector2>());
+    }
+
+    private void LateUpdate()
+    {
+        _playerRotation.Rotate(_playerInput.CharacterControls.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()
