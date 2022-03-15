@@ -207,6 +207,7 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator SearchPause(float delay)
     {
         _aiAnimator.SetTrigger(_idleAnimation);
+        _agent.speed = 0.0f;
         _detectionRadius = _searchingDetectionRadius;
         _fovAngle = _searchingFOVAngle;
         _isSearching = true;
