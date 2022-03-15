@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string _aggroAnimation;
     [SerializeField] private string _attackAnimation;
 
-    private AIStates _currentState;
+    [SerializeField] private AIStates _currentState;
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
         Sequence FindPlayer = new Sequence(new List<Node> {  checkAggroState, invertDetectPlayer, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer, AttackPlayer, ChasePlayer, Patrol });
+        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer/*, AttackPlayer, ChasePlayer, Patrol*/ });
     }
 
     #region AIFunctionality
@@ -186,11 +186,6 @@ public class EnemyAI : MonoBehaviour
         _currentState = targetState;
     }
 
-    public void AttackAnimation()
-    {
-        _aiAnimator.SetTrigger("Attack");
-    }
-
     private IEnumerator AttackPause(Animation animation)
     {
         do
@@ -211,6 +206,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator SearchPause(float delay)
     {
+        _aiAnimator.SetTrigger(_idleAnimation);
         _detectionRadius = _searchingDetectionRadius;
         _fovAngle = _searchingFOVAngle;
         _isSearching = true;
@@ -218,6 +214,7 @@ public class EnemyAI : MonoBehaviour
         _detectionRadius = _origionalDectectonRaduis;
         _fovAngle = _origionalFOVAngle;
         _isSearching = false;
+        StateChange();
     }
 
     public void StateChange()
