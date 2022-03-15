@@ -13,14 +13,18 @@ public class GoToPlayersLastLocation : Node
 
     public override NodeState Decision()
     {
-        float distance = Vector3.Distance(_agent.GetPlayerLastPosition().position, _agent.transform.position); // Get player current pos
-        Debug.Log(distance);
-        if (distance > _attackDistance) // If you're further than min distance move to the target
+        if (_agent.GetPlayerLastPosition() != null)
         {
-            _agent.MoveTo(_agent.GetPlayerLastPosition().gameObject);
-            return NodeState.RUNNING;
+            float distance = Vector3.Distance(_agent.GetPlayerLastPosition().position, _agent.transform.position); // Get player current pos
+            if (distance > _attackDistance) // If you're further than min distance move to the target
+            {
+                _agent.MoveTo(_agent.GetPlayerLastPosition().gameObject);
+                return NodeState.RUNNING;
+            }
+            else
+                return NodeState.SUCCESS;
         }
         else
-            return NodeState.SUCCESS;
+            return NodeState.FAILURE;
     }
 }

@@ -30,10 +30,18 @@ public class EnemyAI : MonoBehaviour
     [Range(0, 360)]
     [SerializeField] private float _searchingFOVAngle;
     [SerializeField] private float _attackDistance;
+    [SerializeField] private string _playerTag;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private LayerMask _obstructionLayer;
 
-    [SerializeField] private AIStates _currentState;
+    [Header("Animation Information")]
+    [SerializeField] private string _idleAnimation;
+    [SerializeField] private string _patrolAnimation;
+    [SerializeField] private string _searchAnimation;
+    [SerializeField] private string _aggroAnimation;
+    [SerializeField] private string _attackAnimation;
+
+    private AIStates _currentState;
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -70,26 +78,17 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         BuildBehaviourTree();
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = GameObject.FindGameObjectWithTag(_playerTag);
         _agent = GetComponent<NavMeshAgent>();
         _aiAnimator = GetComponent<Animator>();
         _origionalDectectonRaduis = _detectionRadius;
         _origionalFOVAngle = _fovAngle;
-
-        SetLastPlayerPosition();
-
-        _currentState = AIStates.Aggro;
     }
 
     void Update()
     {
         _rootNode.Decision();
-
-        if (_currentState == AIStates.Aggro)
-            _agent.speed = _aggroSpeed;
-        else
-            _agent.speed = _patrolSpeed;
-
+        
         Debug.Log(_detectionRadius);
         Debug.Log(_fovAngle);
     }
@@ -131,10 +130,10 @@ public class EnemyAI : MonoBehaviour
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
-        Sequence FindPlayer = new Sequence(new List<Node> { invertCheckSearchState, invertDetectPlayer, checkAggroState, updateStateToSearch });
+        Sequence FindPlayer = new Sequence(new List<Node> {  checkAggroState, invertDetectPlayer, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer /*AttackPlayer, ChasePlayer, Patrol*/ });
+        _rootNode = new Selector(new List<Node> { /*FindPlayer, SearchForPlayer,*/ AttackPlayer, ChasePlayer, Patrol });
     }
 
     #region AIFunctionality
@@ -159,6 +158,8 @@ public class EnemyAI : MonoBehaviour
             _currentNode = _currentNode % _listOfNodes.Count;
 
         GetWaypointPosition();
+
+        StateChange();
     }
 
     public void MoveTo(GameObject target)
@@ -168,6 +169,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator WaypointPause(float delay)
     {
+        _aiAnimator.SetTrigger("Idle");
         _agent.speed = 0.0f;
         _isPaused = true;
         yield return new WaitForSeconds(delay);
@@ -213,6 +215,30 @@ public class EnemyAI : MonoBehaviour
         _detectionRadius = _origionalDectectonRaduis;
         _fovAngle = _origionalFOVAngle;
         _isSearching = false;
+    }
+
+    public void StateChange()
+    {
+        switch (_currentState)
+        {
+            case AIStates.Patrol:
+                _agent.speed = _patrolSpeed;
+                _aiAnimator.SetTrigger(_patrolAnimation);
+                break;
+            case AIStates.Search:
+                _agent.speed = _patrolSpeed;
+                _aiAnimator.SetTrigger(_searchAnimation);
+                break;
+            case AIStates.Aggro:
+                _agent.speed = _aggroSpeed;
+                _aiAnimator.SetTrigger(_aggroAnimation);
+                break;
+            case AIStates.Attack:
+                _aiAnimator.SetTrigger(_attackAnimation);
+                break;
+            default:
+                break;
+        }
     }
     #endregion
 }
