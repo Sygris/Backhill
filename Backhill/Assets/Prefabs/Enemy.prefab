@@ -1349,6 +1349,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6023305451113943462}
+  - component: {fileID: 6675155549235151920}
+  - component: {fileID: 5932264000030008342}
+  - component: {fileID: 4298639585618381686}
+  - component: {fileID: 1591390265106803841}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1372,6 +1376,106 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &6675155549235151920
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403209139960564508}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &5932264000030008342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403209139960564508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa7c1047db85b7419e0d1b62570fa5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _patrolSpeed: 2
+  _aggroSpeed: 8
+  _waypointPauseTime: 2
+  _searchPauseTime: 1
+  _listOfNodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _minWaypointDistance: 1
+  _detectionRadius: 5
+  _fovAngle: 100
+  _searchingDetectionRadius: 8
+  _searchingFOVAngle: 200
+  _attackDistance: 2
+  _playerTag: Player
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _idleAnimation: Idle
+  _patrolAnimation: Patrol
+  _searchAnimation: Search
+  _aggroAnimation: Aggro
+  _attackAnimation: Attack
+--- !u!114 &4298639585618381686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403209139960564508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce813a2b6a0dcb648b1b7b8bd8717772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  viewAngle: 100
+  detectionRadius: 5
+--- !u!95 &1591390265106803841
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403209139960564508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d85fbe0bf4ef8443b73386e747d9d02, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6517768460353101624
 GameObject:
   m_ObjectHideFlags: 0

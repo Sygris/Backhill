@@ -12,6 +12,7 @@ public class UpdateState : Node
     public override NodeState Decision()
     {
         _agent.UpdateState(_targetState);
+        _agent.StateChange();
         return NodeState.SUCCESS;
     }
 }
