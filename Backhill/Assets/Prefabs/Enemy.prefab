@@ -1350,6 +1350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6023305451113943462}
   - component: {fileID: 6675155549235151920}
+  - component: {fileID: 2712949757271631300}
   - component: {fileID: 5932264000030008342}
   - component: {fileID: 4298639585618381686}
   - component: {fileID: 1591390265106803841}
@@ -1398,6 +1399,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &2712949757271631300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403209139960564508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5334642, y: 1.7651782, z: 1.8771224}
+  m_Center: {x: 0.099829316, y: 0.8795707, z: 0.4385612}
 --- !u!114 &5932264000030008342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,18 +1427,15 @@ MonoBehaviour:
   _patrolSpeed: 2
   _aggroSpeed: 8
   _waypointPauseTime: 2
-  _searchPauseTime: 1
-  _listOfNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _searchPauseTime: 3
+  _listOfNodes: []
   _minWaypointDistance: 1
   _detectionRadius: 5
   _fovAngle: 100
   _searchingDetectionRadius: 8
   _searchingFOVAngle: 200
   _attackDistance: 2
+  _attackPauseTime: 0
   _playerTag: Player
   _playerLayer:
     serializedVersion: 2
@@ -1437,6 +1448,7 @@ MonoBehaviour:
   _searchAnimation: Search
   _aggroAnimation: Aggro
   _attackAnimation: Attack
+  _currentState: 0
 --- !u!114 &4298639585618381686
 MonoBehaviour:
   m_ObjectHideFlags: 0
