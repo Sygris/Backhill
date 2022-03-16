@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Class is a Monobehaviour for Debug propuses
+// Class is a Monobehaviour for Debug proposes
 public class InventorySystem : MonoBehaviour
 {
     #region Inventory List and Dictionary

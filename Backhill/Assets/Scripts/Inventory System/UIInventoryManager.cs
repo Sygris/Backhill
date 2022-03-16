@@ -29,13 +29,4 @@ public class UIInventoryManager : MonoBehaviour
         }
 
     }
-
-    //public void AddInventorySlot(InventoryItem item)
-    //{
-    //    GameObject obj = Instantiate(_slotPrefab);
-    //    obj.transform.SetParent(transform, false);
-
-    //    UIInventoryItemSlot slot = obj.GetComponent<UIInventoryItemSlot>();
-    //    slot.Set(item);
-    //}
 }
