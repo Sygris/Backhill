@@ -10,7 +10,8 @@ public class TriggerEventManager : MonoBehaviour
         Status,
         Message,
         Animation,
-        Scene
+        Scene,
+        SFX
     }; public TriggerEventType TriggerMenu;
 
     #region TriggerActions
@@ -74,6 +75,22 @@ public class TriggerEventManager : MonoBehaviour
             SceneManager.LoadScene(_targetBuildIndex);
         }
     }
+
+
+    public PlaySFXParameters TriggerPlaySFX;
+    [System.Serializable]
+    public class PlaySFXParameters
+    {
+        [SerializeField] private AudioClip _targetSFX;
+        [SerializeField] private Transform _sfxLocation;
+        [Range(0.0f, 1.0f)]
+        [SerializeField] private float _sfxVolume;
+
+        public void ExecuteAction()
+        {
+            AudioManager.instance.PlaySound(_targetSFX, _sfxLocation.position, _sfxVolume);
+        }
+    }
     #endregion
 
     public void ExecuteTriggerEvent()
@@ -92,8 +109,16 @@ public class TriggerEventManager : MonoBehaviour
             case TriggerEventType.Scene:
                 TriggerNewScene.ExecuteAction();
                 break;
+            case TriggerEventType.SFX:
+                TriggerPlaySFX.ExecuteAction();
+                break;
             default:
                 break;
         }
+    }
+
+    public void AddAnotherTriggerEvent()
+    {
+        gameObject.AddComponent<TriggerEventManager>();
     }
 }

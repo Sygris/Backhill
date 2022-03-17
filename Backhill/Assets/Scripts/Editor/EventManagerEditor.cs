@@ -14,6 +14,7 @@ public class EventManagerEditor : Editor
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("ColliderType"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_eventName"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_eventLocation"));
 
         if (GUILayout.Button("Generate"))
             eventManager.MakeEventCollider();

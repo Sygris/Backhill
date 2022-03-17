@@ -28,9 +28,15 @@ public class TriggerEventManagerEditor : Editor
             case TriggerEventManager.TriggerEventType.Scene:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("TriggerNewScene"));
                 break;
+            case TriggerEventManager.TriggerEventType.SFX:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("TriggerPlaySFX"));
+                break;
             default:
                 break;
         }
+
+        if (GUILayout.Button("Add Another Event"))
+            triggerEventManager.AddAnotherTriggerEvent();
 
         serializedObject.ApplyModifiedProperties();
     }

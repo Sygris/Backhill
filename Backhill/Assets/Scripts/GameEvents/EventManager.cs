@@ -11,11 +11,15 @@ public class EventManager : MonoBehaviour
     }; public ColliderMenu ColliderType;
 
     [SerializeField] private string _eventName;
-    private GameObject _emptyObject;
+    [SerializeField] private GameObject _eventLocation;
 
     public void MakeEventCollider()
     {
         GameObject _collider = new GameObject(ColliderType.ToString() + ": " + _eventName);
+
+        if (_eventLocation != null)
+            _collider.transform.position = _eventLocation.transform.position;
+
         _collider.transform.parent = transform;
         _collider.AddComponent<BoxCollider>();
         _collider.GetComponent<BoxCollider>().isTrigger = true;
@@ -23,12 +27,12 @@ public class EventManager : MonoBehaviour
         switch (ColliderType)
         {
             case ColliderMenu.Trigger:
-                _collider.AddComponent<TriggerEventManager>();
                 _collider.AddComponent<TriggerEvent>();
+                _collider.AddComponent<TriggerEventManager>();
                 break;
             case ColliderMenu.Toggle:
-                _collider.AddComponent<ToggleEventManager>();
                 _collider.AddComponent<ToggleEvent>();
+                _collider.AddComponent<ToggleEventManager>();
                 break;
             default:
                 break;

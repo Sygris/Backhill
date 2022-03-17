@@ -5,16 +5,17 @@ using UnityEngine;
 public class TriggerEvent : MonoBehaviour
 {
     [SerializeField] private bool _destroyOnExit;
-    private TriggerEventManager _eventManager;
+    private TriggerEventManager[] _eventManagers;
 
     private void Start()
     {
-        _eventManager = GetComponent<TriggerEventManager>();
+        _eventManagers = gameObject.GetComponents<TriggerEventManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _eventManager.ExecuteTriggerEvent();
+        for (int i = 0; i < _eventManagers.Length; i++)
+            _eventManagers[i].ExecuteTriggerEvent();
 
         if (_destroyOnExit)
             gameObject.SetActive(false);
