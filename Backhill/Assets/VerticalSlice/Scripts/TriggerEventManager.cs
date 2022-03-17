@@ -57,9 +57,7 @@ public class TriggerEventManager : MonoBehaviour
         public void ExecuteAction()
         {
             foreach (GameObject item in _targetObjects)
-            {
                 item.GetComponent<Animator>().SetTrigger(_animationParameter);
-            }
         }
     }
 
@@ -82,16 +80,24 @@ public class TriggerEventManager : MonoBehaviour
     public class PlaySFXParameters
     {
         [SerializeField] private AudioClip _targetSFX;
-        [SerializeField] private Transform _sfxLocation;
+        [SerializeField] private List<Transform> _sfxLocation = new List<Transform>();
         [Range(0.0f, 1.0f)]
         [SerializeField] private float _sfxVolume;
 
         public void ExecuteAction()
         {
-            AudioManager.instance.PlaySound(_targetSFX, _sfxLocation.position, _sfxVolume);
+            foreach (Transform item in _sfxLocation)
+            {
+                AudioManager.instance.PlaySound(_targetSFX, item.position, _sfxVolume);
+            }
         }
     }
     #endregion
+
+    public void AddAnotherTriggerEvent()
+    {
+        gameObject.AddComponent<TriggerEventManager>();
+    }
 
     public void ExecuteTriggerEvent()
     {
@@ -115,10 +121,5 @@ public class TriggerEventManager : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public void AddAnotherTriggerEvent()
-    {
-        gameObject.AddComponent<TriggerEventManager>();
     }
 }
