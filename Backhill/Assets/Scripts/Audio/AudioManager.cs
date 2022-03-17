@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
         CreateInstances();
     }
 
-    public void PlaySound(AudioClip clip, Vector3 position, float volume = 1)
+    public void PlaySound(AudioClip clip, Vector3 position, float volume)
     {
         GameObject prefab = GetPoolObject();
 
