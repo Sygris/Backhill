@@ -7,6 +7,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 {
     [SerializeField] private TabGroup _tabGroup;
     [SerializeField] private Image _background;
+    public Image Background { get { return _background; } }
 
     private void Start()
     {
