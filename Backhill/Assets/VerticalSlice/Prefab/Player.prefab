@@ -407,7 +407,7 @@ MonoBehaviour:
   _raycastDistance: 2
   _interact: {fileID: 7838369259999170171, guid: 13eb14bab4931a24dbb7d5a4cf425797, type: 3}
   _interactImage: {fileID: 0}
-  _defaultIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _defaultIcon: {fileID: 21300000, guid: e30fdd154b639e24ca247f8e99d97eac, type: 3}
   _defaultIconSize: {x: 25, y: 25}
-  _defaultInteractIcon: {fileID: 21300000, guid: 54ad73cb3d463a54aaf2cbfd8d76cf3b, type: 3}
+  _defaultInteractIcon: {fileID: 21300000, guid: 4385a477df3268c4c97cb7989f57e4df, type: 3}
   _defaultInteractIconSize: {x: 50, y: 50}
