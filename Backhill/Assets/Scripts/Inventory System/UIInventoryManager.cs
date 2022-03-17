@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class UIInventoryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _slotPrefab;
-
     public void Start()
     {
         InventorySystem.Instance.onInventoryChangedEvent += OnUpdateInventory;
