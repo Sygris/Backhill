@@ -82,7 +82,7 @@ public class TriggerEventManager : MonoBehaviour
         [SerializeField] private AudioClip _targetSFX;
         [SerializeField] private List<Transform> _sfxLocation = new List<Transform>();
         [Range(0.0f, 1.0f)]
-        [SerializeField] private float _sfxVolume;
+        [SerializeField] private float _sfxVolume = 1.0f;
 
         public void ExecuteAction()
         {
