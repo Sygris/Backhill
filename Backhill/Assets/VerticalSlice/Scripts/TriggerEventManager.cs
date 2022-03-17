@@ -11,7 +11,8 @@ public class TriggerEventManager : MonoBehaviour
         Message,
         Animation,
         Scene,
-        SFX
+        PlaySFX,
+        StopSFX
     }; public TriggerEventType TriggerMenu;
 
     #region TriggerActions
@@ -87,9 +88,18 @@ public class TriggerEventManager : MonoBehaviour
         public void ExecuteAction()
         {
             foreach (Transform item in _sfxLocation)
-            {
                 AudioManager.instance.PlaySound(_targetSFX, item.position, _sfxVolume);
-            }
+        }
+    }
+
+
+    public StopSFXParameters TriggerStopSFX;
+    [System.Serializable]
+    public class StopSFXParameters
+    {
+        public void ExecuteAction()
+        {
+            AudioManager.instance.DisablePool();
         }
     }
     #endregion
@@ -115,8 +125,11 @@ public class TriggerEventManager : MonoBehaviour
             case TriggerEventType.Scene:
                 TriggerNewScene.ExecuteAction();
                 break;
-            case TriggerEventType.SFX:
+            case TriggerEventType.PlaySFX:
                 TriggerPlaySFX.ExecuteAction();
+                break;
+            case TriggerEventType.StopSFX:
+                TriggerStopSFX.ExecuteAction();
                 break;
             default:
                 break;
