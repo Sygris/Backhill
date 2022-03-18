@@ -1,7 +1,13 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIInventoryManager : MonoBehaviour
+public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI _itemName;
+    [SerializeField] private TextMeshProUGUI _itemdescription;
+
     public void Start()
     {
         InventorySystem.Instance.onInventoryChangedEvent += OnUpdateInventory;
@@ -26,5 +32,21 @@ public class UIInventoryManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
+
+        if (InventorySystem.Instance.Inventory.Count <= 0 || index > InventorySystem.Instance.Inventory.Count) return;
+
+        _itemName.text = InventorySystem.Instance.Inventory[index].Data.DisplayName;
+        _itemdescription.text = InventorySystem.Instance.Inventory[index].Data.Description;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _itemName.text = "Item Name";
+        _itemdescription.text = "Item Desfription";
     }
 }
