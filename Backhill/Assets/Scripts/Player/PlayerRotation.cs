@@ -40,4 +40,11 @@ public class PlayerRotation : MonoBehaviour
         // Rotate player to look horizontally
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * _xSensivity);
     }
+
+    // In future, make it so there are two sliders to change X and Y sensitivity
+    public void SetSensivity(float sensivity)
+    {
+        _xSensivity = sensivity;
+        _ySensivity = sensivity;
+    }
 }
