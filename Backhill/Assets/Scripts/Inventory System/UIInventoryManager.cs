@@ -38,7 +38,7 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
 
-        if (InventorySystem.Instance.Inventory.Count <= 0 || index > InventorySystem.Instance.Inventory.Count) return;
+        if (InventorySystem.Instance.Inventory.Count <= 0 || index > (InventorySystem.Instance.Inventory.Count - 1)) return;
 
         _itemName.text = InventorySystem.Instance.Inventory[index].Data.DisplayName;
         _itemdescription.text = InventorySystem.Instance.Inventory[index].Data.Description;
@@ -47,6 +47,6 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData eventData)
     {
         _itemName.text = "Item Name";
-        _itemdescription.text = "Item Desfription";
+        _itemdescription.text = "Item Description";
     }
 }
