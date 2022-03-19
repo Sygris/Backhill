@@ -7,7 +7,8 @@ public class InventorySystem : MonoBehaviour
 {
     #region Inventory List and Dictionary
     private Dictionary<InventoryItemData, InventoryItem> _itemDictionary;
-    public List<InventoryItem> Inventory { get; /*private*/ set; } 
+    //public List<InventoryItem> Inventory { get; private set; } 
+    public Dictionary<ItemType, List<InventoryItem>> Inventory { get; private set; }
     #endregion
 
     #region Singleton variable member and proprety
@@ -15,22 +16,20 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem Instance { get { return _instance; } }
     #endregion
 
-    public event Action onInventoryChangedEvent;
-    public void InventoryChanged()
-    {
-        onInventoryChangedEvent?.Invoke();
-    }
-
     private void Awake()
     {
         #region Singleton Creation
         if (_instance != null && _instance != this)
             Destroy(this);
         else
-            _instance = this; 
+            _instance = this;
         #endregion
 
-        Inventory = new List<InventoryItem>();
+        // Initialise Dictionary and its Keys
+        Inventory = new Dictionary<ItemType, List<InventoryItem>>();
+        Inventory.Add(ItemType.Item, new List<InventoryItem>());
+        Inventory.Add(ItemType.Note, new List<InventoryItem>());
+
         _itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
     }
 
@@ -44,6 +43,15 @@ public class InventorySystem : MonoBehaviour
 
     public void Add(InventoryItemData referenceData)
     {
+        // If the item being added is a note add it to the correct key and return
+        if (referenceData.Type == ItemType.Note)
+        {
+            InventoryItem newItem = new InventoryItem(referenceData);
+            Inventory[ItemType.Note].Add(newItem);
+
+            return;
+        }
+
         if (_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
         {
             value.AddToStack();
@@ -51,11 +59,9 @@ public class InventorySystem : MonoBehaviour
         else
         {
             InventoryItem newItem = new InventoryItem(referenceData);
-            Inventory.Add(newItem);
+            Inventory[ItemType.Item].Add(newItem);
             _itemDictionary.Add(referenceData, newItem);
         }
-
-        InventoryChanged();
     }
 
     public void Remove(InventoryItemData referenceData)
@@ -66,11 +72,9 @@ public class InventorySystem : MonoBehaviour
 
             if (value.StackSize == 0)
             {
-                Inventory.Remove(value);
+                Inventory[ItemType.Item].Remove(value);
                 _itemDictionary.Remove(referenceData);
             }
         }
-
-        InventoryChanged();
     }
 }
