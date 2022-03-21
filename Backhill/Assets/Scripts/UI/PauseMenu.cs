@@ -3,7 +3,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenuUI;
-    private bool _isGamePaused = true;
+    private bool _isGamePaused = false;
 
     public bool IsGamePaused
     {
@@ -15,9 +15,9 @@ public class PauseMenu : MonoBehaviour
         _isGamePaused = !_isGamePaused;
 
         if (_isGamePaused)
-            Resume();
-        else
             Pause();
+        else
+            Resume();
     }
 
     private void Resume()
