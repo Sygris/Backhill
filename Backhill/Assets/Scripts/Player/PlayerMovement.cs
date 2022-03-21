@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             _characterController.center = Vector3.Lerp(_characterController.center, new Vector3(0, 0, 0), Time.deltaTime * 10);
-            _characterController.height = Mathf.Lerp(_characterController.height, 3, Time.deltaTime * 5);
+            _characterController.height = Mathf.Lerp(_characterController.height, 2, Time.deltaTime * 5);
         }
     }
 }
