@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         _playerInput.CharacterControls.Torch.performed += ctx => _torch.Toggle();
-        _playerInput.CharacterControls.Menu.performed += ctx => _pauseMenu.Toggle();
+        _playerInput.CharacterControls.Menu.performed += ctx => ToggleMenu();
     }
 
     private void FixedUpdate()
@@ -32,6 +32,23 @@ public class PlayerInput : MonoBehaviour
     {
         _playerRotation.Rotate(_playerInput.CharacterControls.Look.ReadValue<Vector2>());
         _playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
+    }
+
+    private void ToggleMenu()
+    {
+        _pauseMenu.Toggle();
+
+        // Needs to be polished
+        if (_pauseMenu.IsGamePaused)
+        {
+            _playerInput.CharacterControls.Movement.Disable();
+            _playerInput.CharacterControls.Torch.Disable();
+        }
+        else
+        {
+            _playerInput.CharacterControls.Movement.Enable();
+            _playerInput.CharacterControls.Torch.Enable();
+        }
     }
 
     private void OnEnable()
