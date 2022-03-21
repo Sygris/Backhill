@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -52,7 +53,17 @@ public class TutorialManager : MonoBehaviour
 
     public void CompletedAllTutorials()
     {
-        tutorialText.text = "You completed all the tutorials, uhay";
+        StartCoroutine(CompleteTutorials());
+    }
+
+    private IEnumerator CompleteTutorials()
+    {
+        tutorialText.text = "You completed all the tutorials, ugay";
+
+        yield return new WaitForSeconds(2.5f);
+        
+        Destroy(tutorialText.gameObject);
+        Destroy(gameObject);
     }
 
     public Tutorial GetTutorialByOrder(int order)
