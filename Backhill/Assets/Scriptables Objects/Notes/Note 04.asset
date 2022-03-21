@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d98121a7679f04887d1de7ec3f4b73, type: 3}
-  m_Name: Note 01
+  m_Name: Note 04
   m_EditorClassIdentifier: 
-  Id: Note_01
-  DisplayName: Doctor's Notes
-  Description: "\u2026Patient was rush in via ambulance in the early hours of the
-    morning. Car accident. Was conscious on arrival but had bad head injury. Was
-    in obvious distress and so induced into coma to prevent further damage to the
-    brain. Injury could have caused potential memory loss. No way of knowing just
-    yet what the impact of this may be\u2026 "
+  Id: Note_04
+  DisplayName: Insane Scribblings
+  Description: "I saw them take him in there, into the surgery room. They took him
+    in and he hasn\u2019t come out again. I can hear it\u2026 God, the sound of it.
+    I\u2019m hiding, in the toilets. They\u2019ll find me, I\u2019m sure of it, but
+    I have to try or else they\u2019ll take me in there too and make those sounds
+    on me. They took him!"
   Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
   Type: 1

@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d98121a7679f04887d1de7ec3f4b73, type: 3}
-  m_Name: Note 01
+  m_Name: Note 05
   m_EditorClassIdentifier: 
-  Id: Note_01
-  DisplayName: Doctor's Notes
-  Description: "\u2026Patient was rush in via ambulance in the early hours of the
-    morning. Car accident. Was conscious on arrival but had bad head injury. Was
-    in obvious distress and so induced into coma to prevent further damage to the
-    brain. Injury could have caused potential memory loss. No way of knowing just
-    yet what the impact of this may be\u2026 "
+  Id: Note_05
+  DisplayName: Insane Scribblings
+  Description: "There\u2019s a key somewhere here. I know there is. A key to the
+    downstairs door. That\u2019ll get me out. I just have to find it. It\u2019s somewhere,
+    somewhere here I know it is\u2026 "
   Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
   Type: 1

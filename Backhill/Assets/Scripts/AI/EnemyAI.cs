@@ -84,10 +84,6 @@ public class EnemyAI : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _aiAnimator = GetComponent<Animator>();
         _aiCollider = GetComponent<BoxCollider>();
-        if (_aiCollider == null)
-        {
-            Debug.Log("Nope");
-        }
         _origionalDectectonRaduis = _detectionRadius;
         _origionalFOVAngle = _fovAngle;
     }
@@ -95,9 +91,6 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         _rootNode.Decision();
-        
-        Debug.Log(_detectionRadius);
-        Debug.Log(_fovAngle);
     }
 
     private void BuildBehaviourTree()

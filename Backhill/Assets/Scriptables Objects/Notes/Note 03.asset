@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d98121a7679f04887d1de7ec3f4b73, type: 3}
-  m_Name: Note 01
+  m_Name: Note 03
   m_EditorClassIdentifier: 
-  Id: Note_01
-  DisplayName: Doctor's Notes
-  Description: "\u2026Patient was rush in via ambulance in the early hours of the
-    morning. Car accident. Was conscious on arrival but had bad head injury. Was
-    in obvious distress and so induced into coma to prevent further damage to the
-    brain. Injury could have caused potential memory loss. No way of knowing just
-    yet what the impact of this may be\u2026 "
+  Id: Note_03
+  DisplayName: Insane Scribblings
+  Description: "There\u2019s something here with me. I can hear it, out there in
+    the hallway. It\u2019s lurking, waiting for me, watching me\u2026 I have to get
+    out of here, but how? There\u2019s no way out. I\u2019ve looked. Please God,
+    please help me. Please don\u2019t let that thing in the hallway get me, please! "
   Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
   Type: 1
