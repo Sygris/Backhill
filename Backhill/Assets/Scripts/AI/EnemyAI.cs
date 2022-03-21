@@ -1,7 +1,8 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public enum AIStates
 {
@@ -36,13 +37,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask _obstructionLayer;
 
     [Header("Animation Information")]
-    [SerializeField] private string _idleAnimation;
-    [SerializeField] private string _patrolAnimation;
-    [SerializeField] private string _searchAnimation;
-    [SerializeField] private string _aggroAnimation;
-    [SerializeField] private string _attackAnimation;
+    [SerializeField] private string _idleAnimationName;
+    [SerializeField] private string _patrolAnimationName;
+    [SerializeField] private string _searchAnimationName;
+    [SerializeField] private string _aggroAnimationName;
+    [SerializeField] private string _attackAnimationName;
 
-    [SerializeField] private AIStates _currentState;
+    private AIStates _currentState;
     private Node _rootNode;
     private NavMeshAgent _agent;
     private GameObject _player;
@@ -125,7 +126,7 @@ public class EnemyAI : MonoBehaviour
         #region ParentNodes
         Sequence GetPlayerData = new Sequence(new List<Node> { detectPlayer, updateStateToAggro, updatePlayerPosition });
         Sequence SearchForPlayer = new Sequence(new List<Node> { checkSearchState, goToLastPositon, playerSearch, updateStateToPatrol });
-        Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack, updateStateToPatrol });
+        Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
         Sequence FindPlayer = new Sequence(new List<Node> {  checkAggroState, invertDetectPlayer, updateStateToSearch });
@@ -148,7 +149,6 @@ public class EnemyAI : MonoBehaviour
     public void AttackPlayer()
     {
         StartCoroutine(AttackPause(_attackPauseTime));
-        StateChange();
     }
 
     private void UpdateWaypoint()
@@ -178,7 +178,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator WaypointPause(float delay)
     {
-        _aiAnimator.SetTrigger(_idleAnimation);
+        _aiAnimator.SetTrigger(_idleAnimationName);
         _agent.speed = 0.0f;
         _isPaused = true;
         yield return new WaitForSeconds(delay);
@@ -194,17 +194,18 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator AttackPause(float delay)
     {
-        _aiAnimator.SetTrigger(_attackAnimation);
+        _aiAnimator.SetTrigger(_attackAnimationName);
         _agent.speed = 0.0f;
         _aiCollider.enabled = true;
         yield return new WaitForSeconds(delay);
         _aiCollider.enabled = false;
+        _currentState = AIStates.Patrol;
         StateChange();
     }
 
     private IEnumerator SearchPause(float delay)
     {
-        _aiAnimator.SetTrigger(_idleAnimation);
+        _aiAnimator.SetTrigger(_idleAnimationName);
         _agent.speed = 0.0f;
         _detectionRadius = _searchingDetectionRadius;
         _fovAngle = _searchingFOVAngle;
@@ -222,22 +223,27 @@ public class EnemyAI : MonoBehaviour
         {
             case AIStates.Patrol:
                 _agent.speed = _patrolSpeed;
-                _aiAnimator.SetTrigger(_patrolAnimation);
+                _aiAnimator.SetTrigger(_patrolAnimationName);
                 break;
             case AIStates.Search:
                 _agent.speed = _patrolSpeed;
-                _aiAnimator.SetTrigger(_searchAnimation);
+                _aiAnimator.SetTrigger(_searchAnimationName);
                 break;
             case AIStates.Aggro:
                 _agent.speed = _aggroSpeed;
-                _aiAnimator.SetTrigger(_aggroAnimation);
+                _aiAnimator.SetTrigger(_aggroAnimationName);
                 break;
             case AIStates.Attack:
-                _aiAnimator.SetTrigger(_attackAnimation);
+                _aiAnimator.SetTrigger(_attackAnimationName);
                 break;
             default:
                 break;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     #endregion
 }
