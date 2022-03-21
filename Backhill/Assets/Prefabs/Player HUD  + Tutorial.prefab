@@ -1188,6 +1188,7 @@ GameObject:
   - component: {fileID: 7000268987448703967}
   - component: {fileID: 3877700271415164398}
   - component: {fileID: 6473296676517036833}
+  - component: {fileID: 2851059457207726391}
   m_Layer: 5
   m_Name: InventoryIconPanel
   m_TagString: Untagged
@@ -1258,6 +1259,20 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 2
   m_ConstraintCount: 3
+--- !u!114 &2851059457207726391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438343573009829998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6526206f5313f1b428a7b0a77bf88cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemName: {fileID: 7037658527721115221}
+  _itemdescription: {fileID: 9022014942185650097}
 --- !u!1 &451430969272938058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5803415323695463074}
+  - component: {fileID: 6637717544105085494}
   m_Layer: 5
   m_Name: JournalUI
   m_TagString: Untagged
@@ -2388,6 +2404,22 @@ RectTransform:
   m_AnchoredPosition: {x: 935.493, y: 561.8871}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6637717544105085494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907771930550935131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd83921e893dc242823f52b7a4a8a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _description: {fileID: 3513488672332690539}
+  _tabIdle: {r: 0, g: 0, b: 0, a: 0}
+  _tabHover: {r: 0, g: 0, b: 0, a: 0}
+  _tabSelected: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1927181703587369351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,7 +3864,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7770726247035097615}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: SetMusicVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6448,7 +6480,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7770726247035097615}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: SetSFXVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
