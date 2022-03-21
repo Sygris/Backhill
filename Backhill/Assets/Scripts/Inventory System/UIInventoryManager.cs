@@ -11,7 +11,6 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     private void OnEnable()
     {
         DrawInventory();
-        DrawNotes();
     }
 
     public void DrawInventory()
@@ -28,14 +27,6 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
             }
         }
 
-    }
-
-    public void DrawNotes()
-    {
-        foreach (var note in InventorySystem.Instance.Inventory[ItemType.Note])
-        {
-            Debug.Log(note.Data.DisplayName);
-        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
