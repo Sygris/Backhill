@@ -38,4 +38,19 @@ public class PlayerMovement : MonoBehaviour
 
         _characterController.Move(_playerVelocity * Time.deltaTime);
     }
+
+    public void Crouch(float isCrouching)
+    {
+        if (isCrouching == 1)
+        {
+            _characterController.height = Mathf.Lerp(_characterController.height, -0.5f, Time.deltaTime * 5);
+            _characterController.center = Vector3.Lerp(_characterController.center, new Vector3(0, 0, 0), Time.deltaTime * 5);
+        }
+        else
+        {
+
+            _characterController.center = Vector3.Lerp(_characterController.center, new Vector3(0, 0, 0), Time.deltaTime * 10);
+            _characterController.height = Mathf.Lerp(_characterController.height, 3, Time.deltaTime * 5);
+        }
+    }
 }

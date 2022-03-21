@@ -57,6 +57,14 @@ public class @Input : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb3ff723-5c25-48e4-a410-2d5724304bdc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @Input : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afd6c6fa-2ca7-40db-913d-dff5cdf4ad8f"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,6 +190,7 @@ public class @Input : IInputActionCollection, IDisposable
         m_CharacterControls_Torch = m_CharacterControls.FindAction("Torch", throwIfNotFound: true);
         m_CharacterControls_Menu = m_CharacterControls.FindAction("Menu", throwIfNotFound: true);
         m_CharacterControls_Interact = m_CharacterControls.FindAction("Interact", throwIfNotFound: true);
+        m_CharacterControls_Crouch = m_CharacterControls.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -225,6 +245,7 @@ public class @Input : IInputActionCollection, IDisposable
     private readonly InputAction m_CharacterControls_Torch;
     private readonly InputAction m_CharacterControls_Menu;
     private readonly InputAction m_CharacterControls_Interact;
+    private readonly InputAction m_CharacterControls_Crouch;
     public struct CharacterControlsActions
     {
         private @Input m_Wrapper;
@@ -234,6 +255,7 @@ public class @Input : IInputActionCollection, IDisposable
         public InputAction @Torch => m_Wrapper.m_CharacterControls_Torch;
         public InputAction @Menu => m_Wrapper.m_CharacterControls_Menu;
         public InputAction @Interact => m_Wrapper.m_CharacterControls_Interact;
+        public InputAction @Crouch => m_Wrapper.m_CharacterControls_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +280,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnInteract;
+                @Crouch.started -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_CharacterControlsActionsCallbackInterface.OnCrouch;
             }
             m_Wrapper.m_CharacterControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,6 +302,9 @@ public class @Input : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
             }
         }
     }
@@ -288,5 +316,6 @@ public class @Input : IInputActionCollection, IDisposable
         void OnTorch(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }
