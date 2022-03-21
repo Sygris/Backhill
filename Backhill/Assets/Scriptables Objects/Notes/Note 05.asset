@@ -17,6 +17,6 @@ MonoBehaviour:
   Description: "There\u2019s a key somewhere here. I know there is. A key to the
     downstairs door. That\u2019ll get me out. I just have to find it. It\u2019s somewhere,
     somewhere here I know it is\u2026 "
-  Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
+  Icon: {fileID: 21300000, guid: edd35d3da2c04c248b31fc39dfacccbd, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
   Type: 1
