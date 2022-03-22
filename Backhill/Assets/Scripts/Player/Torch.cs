@@ -42,7 +42,7 @@ public class Torch : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (_torchImage.gameObject.activeInHierarchy)
+        if (IsActive())
         {
             _torchImage.fillAmount = _light.intensity / 1;
 
@@ -63,13 +63,21 @@ public class Torch : MonoBehaviour
 
     public void Toggle()
     {
-        _light.enabled = !_light.enabled;
+        if (IsActive())
+        {
+            _light.enabled = !_light.enabled;
 
-        gameObject.SetActive(_light);
+            gameObject.SetActive(_light);
+        }
     }
 
     public void Recharge(float amount)
     {
         _light.intensity += amount;
+    }
+
+    private bool IsActive()
+    {
+        return _torchImage.gameObject.activeInHierarchy;
     }
 }
