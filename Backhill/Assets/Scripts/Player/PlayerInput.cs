@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour
 
         _playerInput.CharacterControls.Menu.performed += ctx =>
         {
-            if (_pauseMenu.gameObject.activeInHierarchy)
+            if (_pauseMenu.gameObject != null)
                 ToggleMenu();
         };
     }

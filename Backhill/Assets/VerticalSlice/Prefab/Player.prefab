@@ -60,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1705958162
 Transform:
   m_ObjectHideFlags: 0
@@ -153,6 +153,10 @@ MonoBehaviour:
   _drainRate: 2
   _maxBrightness: 1
   _minBrightness: 0
+  _torchImage: {fileID: 0}
+  _chargedColor: {r: 0.19277322, g: 0.7169812, b: 0.21000072, a: 1}
+  _halfChargedColor: {r: 0.8113208, g: 0.7907868, b: 0.13394445, a: 1}
+  _emptyColor: {r: 0.7176471, g: 0.27448168, b: 0.1960784, a: 1}
 --- !u!1 &1159071462600511360
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +412,6 @@ MonoBehaviour:
   _interact: {fileID: 7838369259999170171, guid: 13eb14bab4931a24dbb7d5a4cf425797, type: 3}
   _interactImage: {fileID: 0}
   _defaultIcon: {fileID: 21300000, guid: e30fdd154b639e24ca247f8e99d97eac, type: 3}
-  _defaultIconSize: {x: 25, y: 25}
+  _defaultIconSize: {x: 100, y: 100}
   _defaultInteractIcon: {fileID: 21300000, guid: 4385a477df3268c4c97cb7989f57e4df, type: 3}
-  _defaultInteractIconSize: {x: 50, y: 50}
+  _defaultInteractIconSize: {x: 100, y: 100}
