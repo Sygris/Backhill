@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void Open()
+    public virtual void Open()
     {
         for (int i = 0; i < InventorySystem.Instance.Inventory[ItemType.Item].Count; i++)
         {
