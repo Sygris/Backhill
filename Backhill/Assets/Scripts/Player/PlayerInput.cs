@@ -25,7 +25,11 @@ public class PlayerInput : MonoBehaviour
                 _torch.Toggle();
         };
 
-        _playerInput.CharacterControls.Menu.performed += ctx => ToggleMenu();
+        _playerInput.CharacterControls.Menu.performed += ctx =>
+        {
+            if (_pauseMenu.gameObject.activeInHierarchy)
+                ToggleMenu();
+        };
     }
 
     private void FixedUpdate()
