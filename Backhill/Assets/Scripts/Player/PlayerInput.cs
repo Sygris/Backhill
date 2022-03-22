@@ -19,7 +19,12 @@ public class PlayerInput : MonoBehaviour
 
     private void Start()
     {
-        _playerInput.CharacterControls.Torch.performed += ctx => _torch.Toggle();
+        _playerInput.CharacterControls.Torch.performed += ctx =>
+        {
+            if (_torch.gameObject.activeInHierarchy)
+                _torch.Toggle();
+        };
+
         _playerInput.CharacterControls.Menu.performed += ctx => ToggleMenu();
     }
 
