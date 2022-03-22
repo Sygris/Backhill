@@ -58,7 +58,7 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator CompleteTutorials()
     {
-        tutorialText.text = "You completed all the tutorials, ugay";
+        tutorialText.text = "Tutorial Complete";
 
         yield return new WaitForSeconds(2.5f);
         
