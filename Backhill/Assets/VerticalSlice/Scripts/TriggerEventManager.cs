@@ -13,9 +13,12 @@ public class TriggerEventManager : MonoBehaviour
         Scene,
         PlaySFX,
         StopSFX
-    }; public TriggerEventType TriggerMenu;
+    };
+    [Tooltip("Trigger Event Type")]
+    public TriggerEventType TriggerMenu;
 
     #region TriggerActions
+    [Tooltip("Reversing current active state of target object(s)")]
     public StatusTriggerParameters TriggerStatus;
     [System.Serializable]
     public class StatusTriggerParameters
@@ -35,10 +38,12 @@ public class TriggerEventManager : MonoBehaviour
     }
 
 
+    [Tooltip("Message to print to console window")]
     public TriggerMessageParameters TriggerMessage;
     [System.Serializable]
     public class TriggerMessageParameters
     {
+        [Tooltip("Target text to print")]
         [SerializeField] private string _text;
 
         public void ExecuteAction()
@@ -48,11 +53,13 @@ public class TriggerEventManager : MonoBehaviour
     }
 
 
+    [Tooltip("Play animations on target object(s)")]
     public TriggerAnimationParameters TriggerAnimation;
     [System.Serializable]
     public class TriggerAnimationParameters
     {
         [SerializeField] private List<GameObject> _targetObjects = new List<GameObject>();
+        [Tooltip("Animation trigger parameter name")]
         [SerializeField] private string _animationParameter;
 
         public void ExecuteAction()
@@ -63,10 +70,12 @@ public class TriggerEventManager : MonoBehaviour
     }
 
 
+    [Tooltip("Change current scene")]
     public NewSceneParameters TriggerNewScene;
     [System.Serializable]
     public class NewSceneParameters
     {
+        [Tooltip("Build Index of target scene")]
         [SerializeField] private int _targetBuildIndex;
 
         public void ExecuteAction()
@@ -76,12 +85,15 @@ public class TriggerEventManager : MonoBehaviour
     }
 
 
+    [Tooltip("Play SFX from target location")]
     public PlaySFXParameters TriggerPlaySFX;
     [System.Serializable]
     public class PlaySFXParameters
     {
+        [Tooltip("Target audio clip to play")]
         [SerializeField] private AudioClip _targetSFX;
         [SerializeField] private List<Transform> _sfxLocation = new List<Transform>();
+        [Tooltip("SFX Volume")]
         [Range(0.0f, 1.0f)]
         [SerializeField] private float _sfxVolume = 1.0f;
 
@@ -93,6 +105,7 @@ public class TriggerEventManager : MonoBehaviour
     }
 
 
+    [Tooltip("Stop all current SFX")]
     public StopSFXParameters TriggerStopSFX;
     [System.Serializable]
     public class StopSFXParameters

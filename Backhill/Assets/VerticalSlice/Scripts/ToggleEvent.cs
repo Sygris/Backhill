@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ToggleEvent : MonoBehaviour
 {
+    [Tooltip("Disable game event when completed")]
     [SerializeField] private bool _destroyOnExit;
     private ToggleEventManager _eventManager;
 

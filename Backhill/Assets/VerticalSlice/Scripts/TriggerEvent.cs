@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerEvent : MonoBehaviour
 {
+    [Tooltip("Disable game event when completed")]
     [SerializeField] private bool _destroyOnExit;
     private TriggerEventManager[] _eventManagers;
 

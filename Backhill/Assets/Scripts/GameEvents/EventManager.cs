@@ -8,9 +8,13 @@ public class EventManager : MonoBehaviour
     {
         Trigger,
         Toggle
-    }; public ColliderMenu ColliderType;
+    };
+    [Tooltip("Collider Type")]
+    [SerializeField] private ColliderMenu ColliderType;
 
+    [Tooltip("'Trigger / Toggle: ' + Event Name")]
     [SerializeField] private string _eventName;
+    [Tooltip("Location of the collider. Default 0, 0, 0")]
     [SerializeField] private GameObject _eventLocation;
 
     public void MakeEventCollider()
