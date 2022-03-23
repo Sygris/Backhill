@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public virtual bool Open()
+    private bool CheckItem()
     {
         for (int i = 0; i < InventorySystem.Instance.Inventory[ItemType.Item].Count; i++)
         {
@@ -24,5 +24,19 @@ public class Door : MonoBehaviour
         }
 
         return false;
+    }
+
+    public virtual void Open()
+    {
+        if (!CheckItem()) return;
+
+        for (int i = 0; i < InventorySystem.Instance.Inventory[ItemType.Item].Count; i++)
+        {
+            if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
+            {
+                _animator.Play(_animationName);
+                InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
+            }
+        }
     }
 }
