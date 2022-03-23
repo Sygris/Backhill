@@ -11,9 +11,9 @@ public class ToggleEventManager : MonoBehaviour
     }; public ToggleEventType ToggleMenu;
 
     #region ToggleActions
-    public ToggleStatusParameters ToggleStatus;
+    public StatusParameters ToggleStatus;
     [System.Serializable]
-    public class ToggleStatusParameters
+    public class StatusParameters
     {
         [SerializeField] private List<GameObject> _targetObjects = new List<GameObject>();
 
@@ -24,15 +24,30 @@ public class ToggleEventManager : MonoBehaviour
     }
 
 
-    public ToggleMessageParameters ToggleMessage;
+    public MessageParameters ToggleMessage;
     [System.Serializable]
-    public class ToggleMessageParameters
+    public class MessageParameters
     {
         [SerializeField] private string _text;
 
         public void ExecuteAction()
         {
             Debug.Log(_text);
+        }
+    }
+
+
+    public ToggleAnimationOnStatusParameters ToggleAnimationOnStatus;
+    [System.Serializable]
+    public class ToggleAnimationOnStatusParameters
+    {
+        [SerializeField] private List<GameObject> _targetObjects = new List<GameObject>();
+        [SerializeField] private string _animationParameter;
+        [SerializeField] private GameObject _targetStatusObject;
+
+        public void ExecuteAction()
+        {
+
         }
     }
     #endregion

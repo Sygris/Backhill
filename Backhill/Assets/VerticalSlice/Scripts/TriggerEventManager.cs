@@ -19,9 +19,9 @@ public class TriggerEventManager : MonoBehaviour
 
     #region TriggerActions
     [Tooltip("Reversing current active state of target object(s)")]
-    public StatusTriggerParameters TriggerStatus;
+    public StatusParameters TriggerStatus;
     [System.Serializable]
-    public class StatusTriggerParameters
+    public class StatusParameters
     {
         [SerializeField] private List<GameObject> _targetObjects = new List<GameObject>();
 
@@ -39,9 +39,9 @@ public class TriggerEventManager : MonoBehaviour
 
 
     [Tooltip("Message to print to console window")]
-    public TriggerMessageParameters TriggerMessage;
+    public MessageParameters TriggerMessage;
     [System.Serializable]
-    public class TriggerMessageParameters
+    public class MessageParameters
     {
         [Tooltip("Target text to print")]
         [SerializeField] private string _text;
@@ -54,9 +54,9 @@ public class TriggerEventManager : MonoBehaviour
 
 
     [Tooltip("Play animations on target object(s)")]
-    public TriggerAnimationParameters TriggerAnimation;
+    public AnimationParameters TriggerAnimation;
     [System.Serializable]
-    public class TriggerAnimationParameters
+    public class AnimationParameters
     {
         [SerializeField] private List<GameObject> _targetObjects = new List<GameObject>();
         [Tooltip("Animation trigger parameter name")]

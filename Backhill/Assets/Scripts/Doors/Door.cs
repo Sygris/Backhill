@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
         {
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
+                Debug.Log("Key: " + InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id);
                 _animator.Play(_animationName);
                 InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
             }
