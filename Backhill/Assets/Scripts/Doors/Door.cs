@@ -11,16 +11,18 @@ public class Door : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public virtual void Open()
+    public virtual bool Open()
     {
         for (int i = 0; i < InventorySystem.Instance.Inventory[ItemType.Item].Count; i++)
         {
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
-                Debug.Log("Key: " + InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id);
                 _animator.Play(_animationName);
                 InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
+                return true;
             }
         }
+
+        return false;
     }
 }

@@ -7,9 +7,11 @@ public class FinalDoor : Door
 {
     [SerializeField] int _nextSceneIndex;
 
-    public override void Open()
+    public override bool Open()
     {
-        base.Open();
+        if (!base.Open()) return false;
+
         SceneManager.LoadScene(_nextSceneIndex);
+        return true;
     }
 }
