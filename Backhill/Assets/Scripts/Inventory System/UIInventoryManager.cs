@@ -10,7 +10,19 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private void OnEnable()
     {
+        CleanInventory();
         DrawInventory();
+    }
+
+    private void CleanInventory()
+    {
+        // Loop through every item slot
+        for (int j = 0; j < transform.childCount; j++)
+        {
+            // Get the UIInventoryItemSlot component of the item slot and set it to the correspondent item in the inventory
+            UIInventoryItemSlot slot = transform.GetChild(j).GetComponent<UIInventoryItemSlot>();
+            slot.Clean();
+        }
     }
 
     public void DrawInventory()
@@ -41,7 +53,7 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _itemName.text = "Item Name";
-        _itemdescription.text = "Item Description";
+        _itemName.text = string.Empty;
+        _itemdescription.text = string.Empty;
     }
 }
