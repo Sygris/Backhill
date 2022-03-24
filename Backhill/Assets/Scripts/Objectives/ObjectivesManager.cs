@@ -9,6 +9,7 @@ public class ObjectivesManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI _objectivesText;
+    [SerializeField] private string _textPrefix;
 
     #region Singleton variable member and proprety
     private static ObjectivesManager _instance;
@@ -25,7 +26,7 @@ public class ObjectivesManager : MonoBehaviour
         #endregion
 
         _currentIndex = 0;
-        _objectivesText.text = _listOfObjectives[_currentIndex].Description;
+        _objectivesText.text = _textPrefix + _listOfObjectives[_currentIndex].Description;
     }
 
     public void CompleteObjective()
@@ -33,6 +34,6 @@ public class ObjectivesManager : MonoBehaviour
         if (_currentIndex + 1 >= _listOfObjectives.Count) return;
 
         _currentIndex++;
-        _objectivesText.text = _listOfObjectives[_currentIndex].Description;
+        _objectivesText.text = _textPrefix + _listOfObjectives[_currentIndex].Description;
     }
 }
