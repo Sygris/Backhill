@@ -5,6 +5,8 @@ public class Door : MonoBehaviour
     [SerializeField] InventoryItemData _item;
     [SerializeField] Animator _animator;
     [SerializeField] string _animationName;
+    [SerializeField] AudioClip _doorLockedSFX;
+    [SerializeField] AudioClip _doorUnlockedSFX;
     protected bool _isDoorOpen = false;
 
     private void Start()
@@ -19,10 +21,12 @@ public class Door : MonoBehaviour
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
                 _isDoorOpen = true;
+                AudioManager.instance.PlaySound(_doorUnlockedSFX, transform.position, 1.0f);
                 return true;
             }
         }
-
+        Debug.Log("Now");
+        AudioManager.instance.PlaySound(_doorLockedSFX, transform.position, 1.0f);
         return false;
     }
 
