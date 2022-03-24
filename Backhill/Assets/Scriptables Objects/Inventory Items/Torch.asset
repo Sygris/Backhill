@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d98121a7679f04887d1de7ec3f4b73, type: 3}
   m_Name: Torch
   m_EditorClassIdentifier: 
-  Id: InventoryItem_WardKey
+  Id: InventoryItem_Torch
   DisplayName: Torch
-  Description: This key must open the door to the WARD.
-  Icon: {fileID: 21300000, guid: 5b2125318b1b49541a6568c43ed535f3, type: 3}
-  Prefab: {fileID: 1582621612835726801, guid: 1436513f7b239264f9d74995c0c0b042, type: 3}
+  Description: My only source of light in this nightmare
+  Icon: {fileID: 21300000, guid: dc1b20ef62c63d24caa08ebdf05078df, type: 3}
+  Prefab: {fileID: 6043547344774118737, guid: 0bfef017178c9b24aaf6ffeef9c50a00, type: 3}
   Type: 0
