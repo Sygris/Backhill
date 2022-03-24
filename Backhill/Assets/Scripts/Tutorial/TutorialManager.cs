@@ -62,8 +62,8 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        ObjectiveSystem.Instance.Complete();
-        
+        ObjectivesManager.Instance.CompleteObjective();
+
         // Definitely needs to be revisited
         Destroy(tutorialText.gameObject.transform.parent.gameObject);
         Destroy(gameObject);
