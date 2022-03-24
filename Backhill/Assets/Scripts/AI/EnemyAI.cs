@@ -244,7 +244,7 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(_playerTag))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(3);
     }
     #endregion
 }

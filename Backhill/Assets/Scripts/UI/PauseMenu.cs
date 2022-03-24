@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -36,5 +37,10 @@ public class PauseMenu : MonoBehaviour
 
         _pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void GoToMainMenu(int buildIndex)
+    {
+        SceneManager.LoadScene(buildIndex);
     }
 }
