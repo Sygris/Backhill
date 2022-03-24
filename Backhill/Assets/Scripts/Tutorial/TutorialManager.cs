@@ -58,9 +58,11 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator CompleteTutorials()
     {
-        tutorialText.text = "Tutorial Complete";
+        tutorialText.text = "Tutorial Completed";
 
         yield return new WaitForSeconds(2.5f);
+
+        ObjectiveSystem.Instance.Complete();
         
         // Definitely needs to be revisited
         Destroy(tutorialText.gameObject.transform.parent.gameObject);

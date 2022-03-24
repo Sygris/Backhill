@@ -17,8 +17,6 @@ public class Door : MonoBehaviour
         {
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
-                _animator.Play(_animationName);
-                InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
                 return true;
             }
         }
@@ -35,7 +33,10 @@ public class Door : MonoBehaviour
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
                 _animator.Play(_animationName);
-                InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
+
+                // If any problem with this part comment the line 38 and uncomment the line 39
+                InventorySystem.Instance.Remove(InventorySystem.Instance.Inventory[ItemType.Item][i].Data);
+                //InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
             }
         }
     }
