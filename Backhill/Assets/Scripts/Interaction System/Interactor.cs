@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,7 +11,9 @@ public class Interactor : MonoBehaviour
 
     [Header("Interaction Settings")]
     [SerializeField] private InputActionReference _interact;
+    [SerializeField] private float _interactionDelay = 1f;
     private bool _wasInteractionPressed = false;
+    private bool _isInteracting = false;
 
     [Header("Interaction UI")]
     [SerializeField] private Image _interactImage;
@@ -60,9 +63,11 @@ public class Interactor : MonoBehaviour
                 }
 
                 // If the player pressed the interact key while looking to the interactable trigger its function
-                if (_wasInteractionPressed)
+                if (_wasInteractionPressed && !_isInteracting)
                 {
+                    _isInteracting = true;
                     interactable.onInteract.Invoke();
+                    StartCoroutine(Delay());
                 }
             }
         }
@@ -79,6 +84,12 @@ public class Interactor : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(_interactionDelay);
+        _isInteracting = false;
     }
 
     private void OnEnable()
