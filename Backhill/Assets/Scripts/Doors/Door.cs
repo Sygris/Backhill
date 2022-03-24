@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
     [SerializeField] InventoryItemData _item;
     [SerializeField] Animator _animator;
     [SerializeField] string _animationName;
+    protected bool _isDoorOpen = false;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class Door : MonoBehaviour
         {
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
             {
+                _isDoorOpen = true;
                 return true;
             }
         }

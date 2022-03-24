@@ -8,7 +8,8 @@ public class FinalDoor : Door
     public override void Open()
     {
         base.Open();
-
-        SceneManager.LoadScene(_nextSceneIndex);
+        
+        if(_isDoorOpen)
+            SceneManager.LoadScene(_nextSceneIndex);
     }
 }
