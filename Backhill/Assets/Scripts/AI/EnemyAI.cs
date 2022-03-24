@@ -129,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
         Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
-        Sequence FindPlayer = new Sequence(new List<Node> {  checkAggroState, invertDetectPlayer, updateStateToSearch });
+        Sequence FindPlayer = new Sequence(new List<Node> { checkAggroState, invertDetectPlayer, updateStateToSearch });
         #endregion
 
         _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer, AttackPlayer, ChasePlayer, Patrol });
@@ -243,7 +243,8 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (other.gameObject.CompareTag(_playerTag))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     #endregion
 }

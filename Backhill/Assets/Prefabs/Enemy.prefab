@@ -1354,7 +1354,6 @@ GameObject:
   - component: {fileID: 4522974885267153377}
   - component: {fileID: 6675155549235151920}
   - component: {fileID: 5932264000030008342}
-  - component: {fileID: 4298639585618381686}
   - component: {fileID: 1591390265106803841}
   m_Layer: 0
   m_Name: Enemy
@@ -1404,8 +1403,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.1707482, y: 1.7651782, z: 1.1841135}
-  m_Center: {x: -0.022336006, y: 0.8795707, z: 0.019679546}
+  m_Size: {x: 1.6728706, y: 1.7651782, z: 1.2565584}
+  m_Center: {x: 0.021230698, y: 0.8795707, z: 0.055902004}
 --- !u!54 &4522974885267153377
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1466,7 +1465,7 @@ MonoBehaviour:
   _fovAngle: 100
   _searchingDetectionRadius: 15
   _searchingFOVAngle: 200
-  _attackDistance: 3
+  _attackDistance: 2
   _attackPauseTime: 2.5
   _playerTag: Player
   _playerLayer:
@@ -1480,26 +1479,6 @@ MonoBehaviour:
   _searchAnimationName: Search
   _aggroAnimationName: Aggro
   _attackAnimationName: Attack
---- !u!114 &4298639585618381686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6403209139960564508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce813a2b6a0dcb648b1b7b8bd8717772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 8
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 128
-  viewAngle: 100
-  detectionRadius: 8
 --- !u!95 &1591390265106803841
 Animator:
   serializedVersion: 3

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428302542}
   - component: {fileID: 428302543}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 1705958162}
   - component: {fileID: 1705958163}
   - component: {fileID: 972204417}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1159071462600511367}
   - component: {fileID: 4756933290130952773}
   - component: {fileID: 178686838}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 1159071463077304915}
   - component: {fileID: 1159071463077304940}
   - component: {fileID: 581591491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
