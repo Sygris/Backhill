@@ -26,6 +26,7 @@ public class ObjectivesManager : MonoBehaviour
         #endregion
 
         _currentIndex = 0;
+
         _objectivesText.text = _textPrefix + _listOfObjectives[_currentIndex].Description;
     }
 
