@@ -35,12 +35,12 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
         _playerMovement.Move(_playerInput.CharacterControls.Movement.ReadValue<Vector2>());
+        _playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
     }
 
     private void LateUpdate()
     {
         _playerRotation.Rotate(_playerInput.CharacterControls.Look.ReadValue<Vector2>());
-        _playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
     }
 
     private void ToggleMenu()
