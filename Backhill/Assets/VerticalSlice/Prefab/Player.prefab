@@ -440,4 +440,4 @@ MonoBehaviour:
   _defaultIcon: {fileID: 21300000, guid: e30fdd154b639e24ca247f8e99d97eac, type: 3}
   _defaultIconSize: {x: 100, y: 100}
   _defaultInteractIcon: {fileID: 21300000, guid: 4385a477df3268c4c97cb7989f57e4df, type: 3}
-  _defaultInteractIconSize: {x: 100, y: 100}
+  _defaultInteractIconSize: {x: 75, y: 75}
