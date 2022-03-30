@@ -11,7 +11,7 @@ public class InventorySystem : MonoBehaviour
     public Dictionary<ItemType, List<InventoryItem>> Inventory { get; private set; }
     #endregion
 
-    #region Singleton variable member and proprety
+    #region Singleton variable member and property
     private static InventorySystem _instance;
     public static InventorySystem Instance { get { return _instance; } }
     #endregion
@@ -20,12 +20,21 @@ public class InventorySystem : MonoBehaviour
     {
         #region Singleton Creation
         if (_instance != null && _instance != this)
+        {
             Destroy(this);
+        }
         else
+        {
             _instance = this;
+            Init();
+        }
         #endregion
 
-        // Initialise Dictionary and its Keys
+        DontDestroyOnLoad(this);
+    }
+
+    private void Init()
+    {
         Inventory = new Dictionary<ItemType, List<InventoryItem>>();
         Inventory.Add(ItemType.Item, new List<InventoryItem>());
         Inventory.Add(ItemType.Note, new List<InventoryItem>());
