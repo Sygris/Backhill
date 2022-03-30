@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         float z = input.y;
         Vector3 direction = transform.right * x + transform.forward * z;
 
-        var velocity = IsCrouching ? _crouchVelocity : _speed;
+        var velocity = _isCrouching ? _crouchVelocity : _speed;
 
         _characterController.Move(direction * velocity * Time.deltaTime);
 
@@ -59,9 +59,15 @@ public class PlayerMovement : MonoBehaviour
         float desiredHeight;
 
         if (isCrouching == 1f)
+        {
             desiredHeight = _crouchHeight;
+            _isCrouching = true;
+        }
         else
+        {
             desiredHeight = _standHeight;
+            _isCrouching = false;
+        }
 
         if (_characterController.height != desiredHeight)
         {
