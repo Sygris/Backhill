@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8956227262479622349}
   - component: {fileID: 9027554712838753643}
   - component: {fileID: 4484123962269500348}
-  - component: {fileID: 2899178265061675360}
   - component: {fileID: 1499490068232062440}
   m_Layer: 6
   m_Name: Battery
@@ -29,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8942545686330872047}
-  m_LocalRotation: {x: -0, y: -0.7177715, z: -0, w: -0.69627875}
+  m_LocalRotation: {x: -0, y: -0.7177741, z: 0, w: -0.6962761}
   m_LocalPosition: {x: 7.5330677, y: 2.56, z: -12.127947}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
@@ -117,19 +116,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15340108, y: 0.280867, z: 0.15107056}
   m_Center: {x: 0, y: 0.005438015, z: 0}
---- !u!114 &2899178265061675360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942545686330872047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a5b705b9623464499713ee636a94b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ReferenceItem: {fileID: 0}
 --- !u!114 &1499490068232062440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +131,22 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2899178265061675360}
-        m_TargetAssemblyTypeName: ItemObject, Assembly-CSharp
-        m_MethodName: OnHandlePickupItem
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Torch, Assembly-CSharp
+        m_MethodName: Recharge
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.15
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8942545686330872047}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

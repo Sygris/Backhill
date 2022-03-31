@@ -27,17 +27,17 @@ public class Torch : MonoBehaviour
 
     private void Update()
     {
-        //if (_drainOverTime && _light.enabled)
-        //{
-        //    _light.intensity = Mathf.Clamp(_light.intensity, _minBrightness, _maxBrightness);
+        if (_drainOverTime && _light.enabled)
+        {
+            _light.intensity = Mathf.Clamp(_light.intensity, _minBrightness, _maxBrightness);
 
-        //    if (_light.intensity > _minBrightness)
-        //    {
-        //        _light.intensity -= Time.deltaTime * (_drainRate / 100.0f);
-        //    }
-        //}
+            if (_light.intensity > _minBrightness)
+            {
+                _light.intensity -= Time.deltaTime * (_drainRate / 100.0f);
+            }
+        }
 
-        //UpdateUI();
+        UpdateUI();
     }
 
     private void UpdateUI()

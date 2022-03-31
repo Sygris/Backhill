@@ -66,7 +66,7 @@ public class Interactor : MonoBehaviour
                 if (_wasInteractionPressed && !_isInteracting)
                 {
                     _isInteracting = true;
-                    interactable.onInteract.Invoke();
+                    interactable.onInteract?.Invoke();
                     StartCoroutine(Delay());
                 }
             }

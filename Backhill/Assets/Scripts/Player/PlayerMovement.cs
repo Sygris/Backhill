@@ -38,14 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 input)
     {
-        float x = input.x;
-        float z = input.y;
-        Vector3 direction = transform.right * x + transform.forward * z;
+        Vector3 direction = transform.right * input.x + transform.forward * input.y;
 
         var velocity = _isCrouching ? _crouchVelocity : _speed;
-
         _characterController.Move(direction * velocity * Time.deltaTime);
 
+        Gravity();
+    }
+
+    private void Gravity()
+    {
         _playerVelocity.y += _gravity * Time.deltaTime;
 
         if (_isGrounded && _playerVelocity.y < 0)
@@ -71,8 +73,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (_characterController.height != desiredHeight)
         {
+            // Adjust the center and Height of the Character Controller component
             AdjustHeight(desiredHeight);
 
+            // Moves the camera y position to be the same as the Character controller's y position
             var camPos = Camera.main.transform.position;
             camPos.y = _characterController.height;
 
