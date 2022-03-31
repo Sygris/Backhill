@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI _itemName;
@@ -55,5 +55,14 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         _itemName.text = string.Empty;
         _itemdescription.text = string.Empty;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
+
+        if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
+
+
     }
 }
