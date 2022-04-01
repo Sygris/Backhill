@@ -245,7 +245,6 @@ GameObject:
   - component: {fileID: 7515235312735824144}
   - component: {fileID: 8082780019112341578}
   - component: {fileID: 8806057940712573028}
-  - component: {fileID: 7465119543490999869}
   - component: {fileID: 449526236402316808}
   m_Layer: 0
   m_Name: Booth_Toilet_Door_LOD0
@@ -318,19 +317,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7465119543490999869
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256347143663235207}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.1264462, y: 1.7571474, z: 1.4369049}
-  m_Center: {x: 0.05574751, y: 0.8785737, z: 0.49951172}
 --- !u!65 &449526236402316808
 BoxCollider:
   m_ObjectHideFlags: 0

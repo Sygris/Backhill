@@ -175,9 +175,6 @@ GameObject:
   - component: {fileID: 6818321581326469145}
   - component: {fileID: 3413328638622637684}
   - component: {fileID: 8972662380120788250}
-  - component: {fileID: 9162248647071368350}
-  - component: {fileID: 8756719495105419854}
-  - component: {fileID: 2185620383798812552}
   m_Layer: 0
   m_Name: Interior_Wall_Door_01_LOD0
   m_TagString: Untagged
@@ -250,45 +247,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9162248647071368350
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726361947713978059}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.31365082, y: 4.0043, z: 1.3594799}
-  m_Center: {x: 0.09710409, y: 1.99785, z: 0.67973995}
---- !u!65 &8756719495105419854
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726361947713978059}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.31365082, y: 4.0043, z: 1.3976498}
-  m_Center: {x: 0.09710409, y: 1.99785, z: 3.301175}
---- !u!65 &2185620383798812552
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726361947713978059}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.31365082, y: 1.7400565, z: 4}
-  m_Center: {x: 0.09710409, y: 3.1299717, z: 2}
 --- !u!1 &5951875646402302491
 GameObject:
   m_ObjectHideFlags: 0
