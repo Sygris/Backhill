@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _crouchSpeed = 0.3f;
     [SerializeField] private float _standHeight = 2.0f;
     [SerializeField] private float _crouchHeight = 1.0f;
+    [SerializeField] private float _offset = 1.25f;
     private bool _isCrouching = false;
 
     public bool IsCrouching { get { return _isCrouching; } }
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Moves the camera y position to be the same as the Character controller's y position
             var camPos = Camera.main.transform.position;
-            camPos.y = _characterController.height;
+            camPos.y = transform.position.y + _offset;
 
             Camera.main.transform.position = camPos;
         }
