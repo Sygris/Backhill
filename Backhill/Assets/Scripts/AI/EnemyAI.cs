@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public enum AIStates
 {
+    Idle,
     Patrol,
     Search,
     Aggro,
@@ -52,7 +53,7 @@ public class EnemyAI : MonoBehaviour
     private BoxCollider _aiCollider;
 
     private int _currentNode;
-    private bool _isAttacking, _isPaused, _canSeePlayer, _isSearching;
+    private bool _isAttacking, _isPaused, _canSeePlayer, _isSearching = false;
     private float _origionalDectectonRaduis, _origionalFOVAngle;
     #endregion
 
@@ -87,6 +88,8 @@ public class EnemyAI : MonoBehaviour
         _aiCollider = GetComponent<BoxCollider>();
         _origionalDectectonRaduis = _detectionRadius;
         _origionalFOVAngle = _fovAngle;
+        _currentState = AIStates.Patrol;
+        StateChange();
     }
 
     void Update()
@@ -99,12 +102,17 @@ public class EnemyAI : MonoBehaviour
         #region Nodes
         ContinuePatrol goToNextWaypoint = new ContinuePatrol(this, _minWaypointDistance);
 
+        Wait pauseAtWaypoint = new Wait(this);
+
         GoToPlayersLastLocation goToLastPositon = new GoToPlayersLastLocation(this, _attackDistance);
 
+        CheckState checkIdleState = new CheckState(this, AIStates.Idle);
+        CheckState checkPatrolState = new CheckState(this, AIStates.Patrol);
         CheckState checkSearchState = new CheckState(this, AIStates.Search);
         CheckState checkAggroState = new CheckState(this, AIStates.Aggro);
         CheckState checkAttackState = new CheckState(this, AIStates.Attack);
 
+        UpdateState updateStateToIdle = new UpdateState(this, AIStates.Idle);
         UpdateState updateStateToPatrol = new UpdateState(this, AIStates.Patrol);
         UpdateState updateStateToSearch = new UpdateState(this, AIStates.Search);
         UpdateState updateStateToAggro = new UpdateState(this, AIStates.Aggro);
@@ -128,11 +136,12 @@ public class EnemyAI : MonoBehaviour
         Sequence SearchForPlayer = new Sequence(new List<Node> { checkSearchState, goToLastPositon, playerSearch, updateStateToPatrol });
         Sequence AttackPlayer = new Sequence(new List<Node> { checkAttackState, playerWithinAttackingDistance, attack });
         Sequence ChasePlayer = new Sequence(new List<Node> { GetPlayerData, goToLastPositon, updateStateToAttack });
-        Sequence Patrol = new Sequence(new List<Node> { updateStateToPatrol, goToNextWaypoint });
+        Sequence Wait = new Sequence(new List<Node> { checkIdleState, pauseAtWaypoint, updateStateToPatrol});
+        Sequence Patrol = new Sequence(new List<Node> { checkPatrolState, goToNextWaypoint, updateStateToIdle });
         Sequence FindPlayer = new Sequence(new List<Node> { checkAggroState, invertDetectPlayer, updateStateToSearch });
         #endregion
 
-        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer, AttackPlayer, ChasePlayer, Patrol });
+        _rootNode = new Selector(new List<Node> { FindPlayer, SearchForPlayer, AttackPlayer, ChasePlayer, Patrol, Wait });
     }
 
     #region AIFunctionality
@@ -163,6 +172,8 @@ public class EnemyAI : MonoBehaviour
 
         GetWaypointPosition();
 
+        _isPaused = false;
+
         StateChange();
     }
 
@@ -183,7 +194,6 @@ public class EnemyAI : MonoBehaviour
         _isPaused = true;
         yield return new WaitForSeconds(delay);
         _agent.speed = _patrolSpeed;
-        _isPaused = false;
         UpdateWaypoint();
     }
 
@@ -221,6 +231,10 @@ public class EnemyAI : MonoBehaviour
     {
         switch (_currentState)
         {
+            case AIStates.Idle:
+                _agent.speed = 0.0f;
+                _aiAnimator.SetTrigger(_idleAnimationName);
+                break;
             case AIStates.Patrol:
                 _agent.speed = _patrolSpeed;
                 _aiAnimator.SetTrigger(_patrolAnimationName);
