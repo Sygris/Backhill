@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _speed = 2.5f;
     [SerializeField] private float _crouchVelocity = 2.0f;
+    [SerializeField] private float _sprintVelocity = 3.5f;
     private Vector3 _playerVelocity;
+    private bool _isPlayerSprinting = false;
 
     [Header("Crouch Settings")]
     [Range(0, 1.0f)]
@@ -43,6 +45,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = transform.right * input.x + transform.forward * input.y;
 
         var velocity = _isCrouching ? _crouchVelocity : _speed;
+
+        if (_isCrouching)
+            velocity = _crouchVelocity;
+        else if (_isPlayerSprinting)
+            velocity = _sprintVelocity;
+        else
+            velocity = _speed;
+
         _characterController.Move(direction * velocity * Time.deltaTime);
 
         Gravity();
@@ -56,6 +66,16 @@ public class PlayerMovement : MonoBehaviour
             _playerVelocity.y = 0f;
 
         _characterController.Move(_playerVelocity * Time.deltaTime);
+    }
+
+    public void Sprint(float isSprinting)
+    {
+        // Player should not be able to sprint if its already crouching (Design choice)
+        if (_isCrouching)
+            _isPlayerSprinting = false;
+        else
+            _isPlayerSprinting = isSprinting == 1f ? true : false;
+
     }
 
     public void Crouch(float isCrouching)

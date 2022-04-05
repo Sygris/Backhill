@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Inspect : MonoBehaviour
 {
     [SerializeField] private Camera _cameraUI;
+    [SerializeField] private float _sensivity;
     private Vector3 _positionLastFrame;
 
     void Update()
@@ -17,10 +18,15 @@ public class Inspect : MonoBehaviour
         {
             Vector3 mousePosition = Mouse.current.position.ReadValue();
             var delta = mousePosition - _positionLastFrame;
+
+            Vector3 rotation = new Vector3(0, 0, 0);
+            rotation.y = -(delta.x + delta.y) * _sensivity;
+
+            transform.Rotate(rotation);
             _positionLastFrame = mousePosition;
 
-            var axis = Quaternion.AngleAxis(-90f, Vector3.forward) * delta;
-            transform.rotation = Quaternion.AngleAxis(delta.magnitude * 0.1f, axis) * transform.rotation;
+            //var axis = Quaternion.AngleAxis(-90f, Vector3.forward) * delta;
+            //transform.rotation = Quaternion.AngleAxis(delta.magnitude * 0.1f, axis) * transform.rotation;
         }
     }
 }
