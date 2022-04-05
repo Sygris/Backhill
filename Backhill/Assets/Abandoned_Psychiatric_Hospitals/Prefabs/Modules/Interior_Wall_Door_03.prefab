@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3612927489962293171
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,9 +93,7 @@ GameObject:
   - component: {fileID: 5564754527524233689}
   - component: {fileID: 2131266164083557255}
   - component: {fileID: 8220230017108135025}
-  - component: {fileID: 7033372325812586419}
   - component: {fileID: 3175071357331309843}
-  - component: {fileID: 8903781805273216126}
   m_Layer: 0
   m_Name: Directors_Door_LOD0
   m_TagString: Untagged
@@ -140,6 +140,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -165,19 +166,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7033372325812586419
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612927489962293171}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.840952, y: 2.1894279, z: 1.7647133}
-  m_Center: {x: 0.042416573, y: 1.0947139, z: -0.5408211}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3175071357331309843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,21 +180,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17600363, y: 2.1894279, z: 1.1564927}
   m_Center: {x: 0.010639574, y: 1.0947139, z: -0.56824553}
---- !u!114 &8903781805273216126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612927489962293171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4162366dd8f897d4da8955cfc0504b1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smooth: 2
-  DoorOpenAngle: 90
-  txt: {fileID: 0}
 --- !u!1 &3892829931981336705
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +235,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -286,6 +261,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3906947230844687658
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +317,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -366,6 +343,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5951568897251199756
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +357,6 @@ GameObject:
   - component: {fileID: 267552505122585309}
   - component: {fileID: 48699533684897388}
   - component: {fileID: 4134123426105167499}
-  - component: {fileID: 6216234211467963430}
   m_Layer: 0
   m_Name: Interior_Wall_Door_03_LOD0
   m_TagString: Untagged
@@ -424,6 +401,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -450,6 +428,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &48699533684897388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -476,19 +455,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32694727, y: 4.0033984, z: 1.3817005}
   m_Center: {x: 0.099916905, y: 1.9983008, z: 3.3091497}
---- !u!65 &6216234211467963430
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951568897251199756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.32694727, y: 1.7314737, z: 4}
-  m_Center: {x: 0.099916905, y: 3.134263, z: 2}
 --- !u!1 &6742258447306796822
 GameObject:
   m_ObjectHideFlags: 0
