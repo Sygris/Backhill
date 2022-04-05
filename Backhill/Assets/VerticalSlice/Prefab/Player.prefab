@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drainOverTime: 1
-  _drainRate: 2
+  _drainRate: 0.01
   _maxBrightness: 1
   _minBrightness: 0
   _torchImage: {fileID: 0}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2.5
   _crouchVelocity: 1
-  _sprintVelocity: 3.5
+  _sprintVelocity: 5
   _crouchSpeed: 0.3
   _standHeight: 2
   _crouchHeight: 1.5
