@@ -163,6 +163,17 @@ public class @Input : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e206d1ea-d311-45ab-b9b8-fda7f58a842c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Torch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""676cfecb-6aa6-4adf-941c-24c3978b0021"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
