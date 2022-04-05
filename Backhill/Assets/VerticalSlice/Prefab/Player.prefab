@@ -249,11 +249,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2.5
   _crouchVelocity: 1
+  _sprintVelocity: 3.5
   _crouchSpeed: 0.3
   _standHeight: 2
   _crouchHeight: 1.5
-  _offsetStanding: 1.25
-  _offsetCrouching: 0.75
+  _offsetStanding: 1.5
+  _offsetCrouching: 1
   _gravity: -9.8
 --- !u!114 &178686838
 MonoBehaviour:
@@ -318,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159071463077304941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.476, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1705958162}

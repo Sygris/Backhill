@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
 
-        _characterController.height = _crouchHeight;
+        _characterController.height = _standHeight;
         _characterController.center = new Vector3(0, _crouchHeight / 2, 0);
     }
 
