@@ -4,9 +4,13 @@ using UnityEngine.EventSystems;
 
 public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    [Header("References")]
+    [Header("TextMeshPro References")]
     [SerializeField] private TextMeshProUGUI _itemName;
     [SerializeField] private TextMeshProUGUI _itemdescription;
+
+    [Header("UI References")]
+    [SerializeField] private GameObject _itemNameGameObject;
+    [SerializeField] private GameObject _itemDescriptionGameObject;
 
     private void OnEnable()
     {
@@ -47,14 +51,26 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
+        if (!_itemNameGameObject.activeInHierarchy && !_itemDescriptionGameObject.activeInHierarchy)
+        {
+            _itemNameGameObject.SetActive(true);
+            _itemDescriptionGameObject.SetActive(true);
+        }
+
         _itemName.text = InventorySystem.Instance.Inventory[ItemType.Item][index].Data.DisplayName;
         _itemdescription.text = InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Description;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _itemName.text = string.Empty;
-        _itemdescription.text = string.Empty;
+        if (_itemNameGameObject.activeInHierarchy && _itemDescriptionGameObject.activeInHierarchy)
+        {
+            _itemNameGameObject.SetActive(false);
+            _itemDescriptionGameObject.SetActive(false);
+
+            _itemName.text = string.Empty;
+            _itemdescription.text = string.Empty;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
