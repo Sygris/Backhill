@@ -10,6 +10,9 @@ public class Torch : MonoBehaviour
     [SerializeField] private bool _drainOverTime;
     [SerializeField] private float _drainRate;
 
+    [Header("Recharge Battery Settings")]
+    [SerializeField] private float _rechargeRate; 
+
     [Header("Light Settings")]
     [SerializeField] private float _maxBrightness;
     [SerializeField] private float _minBrightness;
@@ -27,17 +30,39 @@ public class Torch : MonoBehaviour
 
     private void Update()
     {
-        //if (_drainOverTime && _light.enabled)
-        //{
-        //    _light.intensity = Mathf.Clamp(_light.intensity, _minBrightness, _maxBrightness);
+        // If _drainOVerTime is true and the light is on drain
+        Drain();
 
-        //    if (_light.intensity > _minBrightness)
-        //    {
-        //        _light.intensity -= Time.deltaTime * (_drainRate / 100.0f);
-        //    }
-        //}
+        // If the light is off recharge
+        Recharge();
 
-        //UpdateUI();
+        UpdateUI();
+    }
+
+    private void Drain()
+    {
+        if (_drainOverTime && _light.enabled)
+        {
+            _light.intensity = Mathf.Clamp(_light.intensity, _minBrightness, _maxBrightness);
+
+            if (_light.intensity > _minBrightness)
+            {
+                _light.intensity -= Time.deltaTime * (_drainRate / 100.0f);
+            }
+        }
+    }
+
+    private void Recharge()
+    {
+        if (!_light.enabled)
+        {
+            _light.intensity = Mathf.Clamp(_light.intensity, _minBrightness, _maxBrightness);
+
+            if (_light.intensity < _maxBrightness)
+            {
+                _light.intensity += Time.deltaTime * (_drainRate / 100.0f);
+            }
+        }
     }
 
     private void UpdateUI()
