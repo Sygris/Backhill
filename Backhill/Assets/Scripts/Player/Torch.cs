@@ -30,7 +30,7 @@ public class Torch : MonoBehaviour
 
     private void Update()
     {
-        // If _drainOVerTime is true and the light is on drain
+        // If drain over time is true and the light is on drain
         Drain();
 
         // If the light is off recharge

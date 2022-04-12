@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _offsetStanding = 1.25f;
     [SerializeField] private float _offsetCrouching = 0.25f;
     private bool _isCrouching = false;
-
     public bool IsCrouching { get { return _isCrouching; } }
 
     [Header("Gravity Settings")]
@@ -78,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // Hold crouch
     public void Crouch(float isCrouching)
     {
         float desiredHeight;
@@ -92,6 +92,29 @@ public class PlayerMovement : MonoBehaviour
             desiredHeight = _standHeight;
             _isCrouching = false;
         }
+
+        if (_characterController.height != desiredHeight)
+        {
+            // Adjust the center and Height of the Character Controller component
+            AdjustHeight(desiredHeight);
+
+            // Moves the camera y position to be the same as the Character controller's y position
+            var camPos = Camera.main.transform.position;
+
+            float offset = _isCrouching ? _offsetCrouching : _offsetStanding;
+
+            camPos.y = transform.position.y + offset;
+
+            Camera.main.transform.position = camPos;
+        }
+    }
+
+    // Trigger crouch
+    public void Crouch()
+    {
+        _isCrouching = !_isCrouching;
+
+        float desiredHeight = _isCrouching == true ? _crouchHeight : _standHeight;
 
         if (_characterController.height != desiredHeight)
         {

@@ -30,13 +30,15 @@ public class PlayerInput : MonoBehaviour
             if (_pauseMenu.gameObject != null)
                 ToggleMenu();
         };
+
+        _playerInput.CharacterControls.Crouch.performed += ctx => _playerMovement.Crouch();
     }
 
     private void FixedUpdate()
     {
         _playerMovement.Move(_playerInput.CharacterControls.Movement.ReadValue<Vector2>());
         _playerMovement.Sprint(_playerInput.CharacterControls.Sprint.ReadValue<float>());
-        _playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
+        //_playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
     }
 
     private void LateUpdate()
