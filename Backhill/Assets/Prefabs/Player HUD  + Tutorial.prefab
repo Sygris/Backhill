@@ -49,6 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c598f5581f3470e43b68b906bccd57e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _text: {fileID: 0}
+  _notificationBar: {fileID: 0}
+  _prefixString: '>>'
+  _sufixString: Collected
 --- !u!1 &356036630
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,8 +120,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 85d04e40e364d414e90595065027f61a, type: 2}
+  m_sharedMaterial: {fileID: -4742318742808980826, guid: 85d04e40e364d414e90595065027f61a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -230,6 +234,7 @@ GameObject:
   - component: {fileID: 1657954566}
   - component: {fileID: 1657954568}
   - component: {fileID: 1657954567}
+  - component: {fileID: 599171960317721373}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -295,6 +300,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &599171960317721373
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657954565}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7073cf75eca8f5149a63d31a1b9dd765, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &99300851309097355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,6 +3425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _description: {fileID: 3513488672332690539}
+  _backgroundImage: {fileID: 0}
   _tabIdle: {r: 0, g: 0, b: 0, a: 0}
   _tabHover: {r: 0, g: 0, b: 0, a: 0}
   _tabSelected: {r: 0, g: 0, b: 0, a: 0}
