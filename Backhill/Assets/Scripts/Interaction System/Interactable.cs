@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Highlight))]
 public class Interactable : MonoBehaviour
 {
     public UnityEvent onInteract;

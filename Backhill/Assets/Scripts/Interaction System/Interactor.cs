@@ -23,6 +23,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Vector2 _defaultInteractIconSize;
 
     private Interactable _lastInteractable;
+    private Highlight _highlight;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class Interactor : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, _raycastDistance, _interactableLayerMask))
         {
             Interactable interactable = hit.collider.GetComponent<Interactable>();
+            _highlight = hit.collider.GetComponent<Highlight>();
 
             // If interactable is not null
             if (interactable)
@@ -43,6 +45,7 @@ public class Interactor : MonoBehaviour
                 if (_lastInteractable == null)
                 {
                     _lastInteractable = interactable;
+                    _highlight.Select();
                 }
 
                 // If interactable does not have a icon set the interact image to the interactable's icon else use the default values
@@ -50,7 +53,7 @@ public class Interactor : MonoBehaviour
                 {
                     _interactImage.sprite = interactable.InteractionIcon;
 
-                    // If the interactable's icon size is not set set it to default else use the interactable's icon size
+                    // If the interactable's icon size is not set it to default else use the interactable's icon size
                     if (interactable.IconSize == Vector2.zero)
                         _interactImage.rectTransform.sizeDelta = _defaultInteractIconSize;
                     else
@@ -73,8 +76,12 @@ public class Interactor : MonoBehaviour
         }
         else
         {
+            if(_lastInteractable != null)
+                _highlight.Deselect();
+
             // Clear the last interactable value
             _lastInteractable = null;
+
 
             // If the player is not currently looking to an interactable and the interact image is not the default set it to default
             if (_interactImage.sprite != _defaultIcon)
