@@ -4,19 +4,18 @@ using UnityEngine;
 public class Highlight : MonoBehaviour
 {
     [Header("Highlight Settings")]
-    [SerializeField] private Color _highlightColor = new Vector4(89f, 89f, 89f, 255f);
+    [SerializeField] private Color _highlightColor;
 
     List<Material> _materials = new List<Material>();
 
     void Start()
     {
-        _highlightColor = new Vector4(89f, 89f, 89f, 255f);
-
         if (GetComponent<MeshRenderer>() != null)
         {
             // Tries to get the MeshRenderer component from the GameObject
             foreach (var material in GetComponent<MeshRenderer>().materials)
             {
+                material.EnableKeyword("_EMISSION");
                 _materials.Add(material);
             }
         }
@@ -38,7 +37,7 @@ public class Highlight : MonoBehaviour
     {
         foreach (var material in _materials)
         {
-            material.SetColor("_Emission", _highlightColor);
+            material.SetColor("_EmissionColor", _highlightColor);
         }
     }
 
@@ -46,7 +45,7 @@ public class Highlight : MonoBehaviour
     {
         foreach (var material in _materials)
         {
-            material.SetColor("_Emission", Color.black);
+            material.SetColor("_EmissionColor", Color.black);
         }
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7414680568015472295}
   - component: {fileID: 7414680568015472294}
   - component: {fileID: 7414680568015472289}
+  - component: {fileID: 2729760612884868299}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -139,3 +140,16 @@ MonoBehaviour:
         m_CallState: 2
   InteractionIcon: {fileID: 0}
   IconSize: {x: 0, y: 0}
+--- !u!114 &2729760612884868299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8291308649586645763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c1a2ae8a57af340b3dd5da812ef110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _highlightColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}

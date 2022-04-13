@@ -92,6 +92,9 @@ public class Torch : MonoBehaviour
 
     public void Recharge(float amount)
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         _light.intensity += amount;
     }
 }
