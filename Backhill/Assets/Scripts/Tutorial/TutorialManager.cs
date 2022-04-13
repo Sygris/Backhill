@@ -7,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
     public List<Tutorial> tutorials = new List<Tutorial>();
     public TextMeshProUGUI tutorialText;
+    private Tutorial currentTutorial;
 
     private static TutorialManager instance;
     public static TutorialManager Instance
@@ -20,11 +21,10 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private Tutorial currentTutorial;
-
     private void Start()
     {
-        SetNextTutorial(0);    
+        SetNextTutorial(0);
+        tutorialText.text = currentTutorial.explanation;
     }
 
     private void Update()
@@ -35,6 +35,7 @@ public class TutorialManager : MonoBehaviour
 
     public void CompletedTutorial()
     {
+        StartCoroutine(CompleteTutorial());
         SetNextTutorial(currentTutorial.order + 1);
     }    
 
@@ -47,8 +48,6 @@ public class TutorialManager : MonoBehaviour
             CompletedAllTutorials();
             return;
         }
-
-        tutorialText.text = currentTutorial.explanation;
     }
 
     public void CompletedAllTutorials()
@@ -64,9 +63,21 @@ public class TutorialManager : MonoBehaviour
 
         ObjectivesManager.Instance.CompleteObjective();
 
-        // Definitely needs to be revisited
+        // Destroys the UI elements and the Tutorial Manager itself
         Destroy(tutorialText.gameObject.transform.parent.gameObject);
         Destroy(gameObject);
+    }
+
+    private IEnumerator CompleteTutorial()
+    {
+        tutorialText.fontStyle = FontStyles.Strikethrough;
+
+        // Play Fade In/Out animation
+
+        yield return new WaitForSeconds(2.5f);
+
+        tutorialText.fontStyle = FontStyles.Normal;
+        tutorialText.text = currentTutorial.explanation;
     }
 
     public Tutorial GetTutorialByOrder(int order)

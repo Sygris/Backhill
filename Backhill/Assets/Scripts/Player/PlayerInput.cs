@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
 {
-    // Variable that stores the instance of PlayerInput
     private Input _playerInput;
 
     [Header("Script References")]
@@ -30,15 +29,13 @@ public class PlayerInput : MonoBehaviour
             if (_pauseMenu.gameObject != null)
                 ToggleMenu();
         };
-
-        _playerInput.CharacterControls.Crouch.performed += ctx => _playerMovement.Crouch();
     }
 
     private void FixedUpdate()
     {
         _playerMovement.Move(_playerInput.CharacterControls.Movement.ReadValue<Vector2>());
         _playerMovement.Sprint(_playerInput.CharacterControls.Sprint.ReadValue<float>());
-        //_playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
+        _playerMovement.Crouch(_playerInput.CharacterControls.Crouch.ReadValue<float>());
     }
 
     private void LateUpdate()
@@ -50,7 +47,6 @@ public class PlayerInput : MonoBehaviour
     {
         _pauseMenu.Toggle();
 
-        // Needs to be polished
         if (_pauseMenu.IsGamePaused)
         {
             _playerInput.CharacterControls.Movement.Disable();

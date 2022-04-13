@@ -12,6 +12,9 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private GameObject _itemNameGameObject;
     [SerializeField] private GameObject _itemDescriptionGameObject;
 
+    [Header("Inspect Settings")]
+    [SerializeField] private GameObject _test;
+
     private void OnEnable()
     {
         CleanInventory();
@@ -79,6 +82,6 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
-
+        Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab);
     }
 }
