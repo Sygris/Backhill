@@ -27,6 +27,7 @@ public class Highlight : MonoBehaviour
             {
                 foreach (var material in meshRenderer.materials)
                 {
+                    material.EnableKeyword("_EMISSION");
                     _materials.Add(material);
                 }
             }

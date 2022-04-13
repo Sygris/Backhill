@@ -39,7 +39,8 @@ public class JournalUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        return;
+        _description.text = string.Empty;
+        _backgroundImage.sprite = null;
     }
 
     public void OnPointerUp(PointerEventData eventData)
