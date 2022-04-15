@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c598f5581f3470e43b68b906bccd57e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 0}
-  _notificationBar: {fileID: 0}
+  _text: {fileID: 356036632}
+  _notificationBar: {fileID: 1657954565}
   _prefixString: '>>'
   _sufixString: Collected
 --- !u!1 &356036630
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1736,6 +1736,7 @@ MonoBehaviour:
   _itemdescription: {fileID: 9022014942185650097}
   _itemNameGameObject: {fileID: 8555254075249590516}
   _itemDescriptionGameObject: {fileID: 3479287635867159633}
+  _test: {fileID: 0}
 --- !u!1 &451430969272938058
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,6 +6057,7 @@ MonoBehaviour:
   _itemdescription: {fileID: 9022014942185650097}
   _itemNameGameObject: {fileID: 0}
   _itemDescriptionGameObject: {fileID: 0}
+  _test: {fileID: 0}
 --- !u!1 &4946424621563750321
 GameObject:
   m_ObjectHideFlags: 0
