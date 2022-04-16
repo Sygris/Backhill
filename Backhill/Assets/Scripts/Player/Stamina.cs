@@ -1,22 +1,51 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
     [Header("Stamina Settings")]
-    public float PlayerStamina = 100.0f;
+    [SerializeField] private float _playerStamina = 100.0f;
     [SerializeField] private float _maxStamina = 100.0f;
-    [HideInInspector] public bool HasRegenerated = true;
-    [HideInInspector] public bool IsPlayerSprinting = false;
+    private bool _isPlayerSprinting = false;
 
     [Header("Stamina Regeneration Settings")]
     [Range(0, 50)] [SerializeField] private float _staminaDrain = 0.5f;
     [Range(0, 50)] [SerializeField] private float _staminaRegeneration = 0.5f;
 
-    [Header("Stamina Speed Settings")]
-    [SerializeField] private int _slowedRunSpeed = 4;
-    [SerializeField] private int _normalRunSpeed = 4;
+    [Header("UI References")]
+    [SerializeField] private Image _slider;
 
-    //[Header("Stamina UI Elements")]
-    //[SerializeField] private 
+    private void Update()
+    {
+        Drain();
+        Recharge();
 
+        _slider.fillAmount = _playerStamina / 100.0f;
+    }
+
+    public void Sprint()
+    {
+        _isPlayerSprinting = true;
+    }
+
+    public void Walk() { _isPlayerSprinting = false; }
+
+    private void Drain()
+    {
+        if (_isPlayerSprinting)
+        {
+            if (_playerStamina > 0.0f)
+            {
+                _playerStamina -= Time.deltaTime * _staminaDrain;
+            }
+        }
+    }
+
+    private void Recharge()
+    {
+        if (!_isPlayerSprinting && _playerStamina < _maxStamina)
+        {
+            _playerStamina += Time.deltaTime * _staminaRegeneration;
+        }
+    }
 }

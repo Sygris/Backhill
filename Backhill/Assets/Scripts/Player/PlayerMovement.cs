@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private bool _isCrouching = false;
     public bool IsCrouching { get { return _isCrouching; } }
 
+    [Header("Stamina Settings")]
+    [SerializeField] private Stamina _stamina;
+
     [Header("Gravity Settings")]
     [SerializeField] private float _gravity = -9.8f;
     private bool _isGrounded;
@@ -73,8 +76,18 @@ public class PlayerMovement : MonoBehaviour
         if (_isCrouching)
             _isPlayerSprinting = false;
         else
-            _isPlayerSprinting = isSprinting == 1f ? true : false;
-
+        {
+            if (isSprinting == 1f)
+            {
+                _isPlayerSprinting = true;
+                _stamina.Sprint();
+            }
+            else
+            {
+                _isPlayerSprinting = false;
+                _stamina.Walk();
+            }
+        }
     }
 
     // Hold crouch
