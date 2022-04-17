@@ -13,7 +13,8 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private GameObject _itemDescriptionGameObject;
 
     [Header("Inspect Settings")]
-    [SerializeField] private GameObject _test;
+    [SerializeField] private GameObject _background;
+    [SerializeField] private GameObject _cameraUI;
 
     private void OnEnable()
     {
@@ -82,6 +83,9 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
-        Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab);
+        _background.SetActive(true);
+
+        GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab, _cameraUI.transform.GetChild(0));
+        go.AddComponent<Inspect>();
     }
 }

@@ -22,11 +22,10 @@ public class Inspect : MonoBehaviour
             Vector3 rotation = new Vector3(0, 0, 0);
             rotation.y = -(delta.x + delta.y) * _sensivity;
 
-            transform.Rotate(rotation);
-            _positionLastFrame = mousePosition;
+            if (transform.childCount < 0) return;
 
-            //var axis = Quaternion.AngleAxis(-90f, Vector3.forward) * delta;
-            //transform.rotation = Quaternion.AngleAxis(delta.magnitude * 0.1f, axis) * transform.rotation;
+            transform.GetChild(0).Rotate(rotation);
+            _positionLastFrame = mousePosition;
         }
     }
 }
