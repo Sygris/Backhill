@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Note 01
   m_EditorClassIdentifier: 
   Id: Note_01
-  DisplayName: Doctor's Notes
+  DisplayName: Note 1
   Description: "\u2026Patient was rushed in via ambulance in the early hours of the
     morning. Car accident. Was conscious on arrival but had bad head injury. Was
     in obvious distress and so induced into coma to prevent further damage to the
