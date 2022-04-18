@@ -86,6 +86,11 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
         _background.SetActive(true);
 
         GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab, _cameraUI.transform.GetChild(0));
-        go.AddComponent<Inspect>();
+        go.layer = LayerMask.NameToLayer("UI");
+
+        foreach (Transform child in go.transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("UI");
+        }
     }
 }

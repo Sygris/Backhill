@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isCrouching)
             velocity = _crouchVelocity;
-        else if (_isPlayerSprinting)
+        else if (_stamina.IsPlayerCrouching)
             velocity = _sprintVelocity;
         else
             velocity = _speed;
@@ -73,8 +73,7 @@ public class PlayerMovement : MonoBehaviour
     public void Sprint(float isSprinting)
     {
         // Player should not be able to sprint if its already crouching (Design choice)
-        if (_isCrouching)
-            _isPlayerSprinting = false;
+        if (_isCrouching) return;
         else
         {
             if (isSprinting == 1f)

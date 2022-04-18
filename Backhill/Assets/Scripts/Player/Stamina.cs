@@ -7,6 +7,7 @@ public class Stamina : MonoBehaviour
     [SerializeField] private float _playerStamina = 100.0f;
     [SerializeField] private float _maxStamina = 100.0f;
     private bool _isPlayerSprinting = false;
+    public bool IsPlayerCrouching { get { return _isPlayerSprinting; } }
 
     [Header("Stamina Regeneration Settings")]
     [Range(0, 50)] [SerializeField] private float _staminaDrain = 0.5f;
@@ -37,6 +38,10 @@ public class Stamina : MonoBehaviour
             if (_playerStamina > 0.0f)
             {
                 _playerStamina -= Time.deltaTime * _staminaDrain;
+            }
+            else
+            {
+                _isPlayerSprinting = false;
             }
         }
     }
