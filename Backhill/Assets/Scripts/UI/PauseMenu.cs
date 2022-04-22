@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenuUI;
+    [SerializeField] private InspectUI _inspectUI;
+
     private bool _isGamePaused = false;
 
     public bool IsGamePaused
@@ -18,7 +20,19 @@ public class PauseMenu : MonoBehaviour
         if (_isGamePaused)
             Pause();
         else
+        {
             Resume();
+
+            if (_inspectUI != null && _inspectUI.isActiveAndEnabled)
+                _inspectUI.Close();
+        }
+    }
+
+    public void CloseInspect()
+    {
+        _isGamePaused = !_isGamePaused;
+
+        Resume();
     }
 
     private void Resume()

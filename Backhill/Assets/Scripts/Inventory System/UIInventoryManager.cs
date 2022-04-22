@@ -85,6 +85,9 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         _background.SetActive(true);
 
+        GameObject menu = GameObject.Find("Menu");
+        menu.SetActive(false);
+
         GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab, _cameraUI.transform.GetChild(0));
         go.layer = LayerMask.NameToLayer("UI");
 
