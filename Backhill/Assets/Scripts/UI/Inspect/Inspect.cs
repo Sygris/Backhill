@@ -9,6 +9,11 @@ public class Inspect : MonoBehaviour
 
     void Update()
     {
+        if (transform.childCount <= 0)
+        {
+            return;
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             _positionLastFrame = Mouse.current.position.ReadValue();
@@ -22,7 +27,7 @@ public class Inspect : MonoBehaviour
             Vector3 rotation = new Vector3(0, 0, 0);
             rotation.y = -(delta.x + delta.y) * _sensivity;
 
-            if (transform.childCount < 0) return;
+            if (transform.childCount <= 0) return;
 
             transform.GetChild(0).Rotate(rotation);
             _positionLastFrame = mousePosition;

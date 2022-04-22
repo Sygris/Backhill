@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour
     {
         StartCoroutine(CompleteTutorial());
         SetNextTutorial(currentTutorial.order + 1);
-    }    
+    }
 
     public void SetNextTutorial(int currentOrder)
     {
@@ -72,12 +72,14 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.fontStyle = FontStyles.Strikethrough;
 
-        // Play Fade In/Out animation
-
         yield return new WaitForSeconds(2.5f);
 
         tutorialText.fontStyle = FontStyles.Normal;
-        tutorialText.text = currentTutorial.explanation;
+
+        if (currentTutorial != null)
+        {
+            tutorialText.text = currentTutorial.explanation;
+        }
     }
 
     public Tutorial GetTutorialByOrder(int order)
