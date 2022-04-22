@@ -52,6 +52,7 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
+        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
@@ -80,6 +81,7 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerDown(PointerEventData eventData)
     {
         int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
+        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
