@@ -52,7 +52,6 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
@@ -81,11 +80,13 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerDown(PointerEventData eventData)
     {
         int index = eventData.pointerCurrentRaycast.gameObject.transform.GetSiblingIndex();
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
 
         if (InventorySystem.Instance.Inventory[ItemType.Item].Count <= 0 || index > (InventorySystem.Instance.Inventory[ItemType.Item].Count - 1)) return;
 
         _background.SetActive(true);
+
+        GameObject menu = GameObject.Find("Menu");
+        menu.SetActive(false);
 
         GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab, _cameraUI.transform.GetChild(0));
         go.layer = LayerMask.NameToLayer("UI");
