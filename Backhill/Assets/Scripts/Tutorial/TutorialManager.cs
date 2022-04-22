@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.text = "Tutorial Completed";
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSecondsRealtime(2.5f);
 
         ObjectivesManager.Instance.CompleteObjective();
 
@@ -72,7 +72,7 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.fontStyle = FontStyles.Strikethrough;
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSecondsRealtime(2.5f);
 
         tutorialText.fontStyle = FontStyles.Normal;
 
