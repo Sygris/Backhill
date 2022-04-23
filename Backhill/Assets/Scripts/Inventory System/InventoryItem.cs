@@ -1,6 +1,4 @@
-using System;
-
-[Serializable]
+[System.Serializable]
 public class InventoryItem
 {
     public InventoryItemData Data { get; private set; }

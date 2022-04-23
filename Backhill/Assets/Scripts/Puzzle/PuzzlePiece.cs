@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    void Start()
+    public void Check(InventoryItemData reference)
     {
-        
-    }
-
-    void Update()
-    {
-    }
-
-    private void CheckItem(InventoryItem reference)
-    {
-        if (InventorySystem.Instance.Inventory[ItemType.Item].Contains(reference))
+        foreach (var item in InventorySystem.Instance.Inventory[ItemType.Item])
         {
-            Debug.Log("Noice");
+            if (item.Data == reference)
+            {
+                Place();
+                return;
+            }
         }
+
+        Wrong();
+    }
+
+    private void Place()
+    {
+        Debug.Log("Placing the object");
+    }
+
+    private void Wrong()
+    {
+        Debug.Log("Object not found");
     }
 }
