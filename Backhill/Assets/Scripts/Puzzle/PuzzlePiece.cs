@@ -1,16 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
+    private PuzzleManager _puzzleManager;
+
+    private void Awake()
+    {
+        _puzzleManager = FindObjectOfType<PuzzleManager>();
+    }
+
     public void Check(InventoryItemData reference)
     {
         foreach (var item in InventorySystem.Instance.Inventory[ItemType.Item])
         {
             if (item.Data == reference)
             {
-                Place();
+                Place(item.Data.Prefab);
                 return;
             }
         }
@@ -18,9 +23,13 @@ public class PuzzlePiece : MonoBehaviour
         Wrong();
     }
 
-    private void Place()
+    private void Place(GameObject prefab)
     {
-        Debug.Log("Placing the object");
+        Instantiate(prefab, transform.position, transform.rotation);
+
+        _puzzleManager.RemoveItem(gameObject);
+
+        Destroy(gameObject);
     }
 
     private void Wrong()
