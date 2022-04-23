@@ -15,6 +15,6 @@ MonoBehaviour:
   Id: InventoryItem_Rosary
   DisplayName: Rosary
   Description: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 88bd6898a1cab084bbd24be866388016, type: 3}
   Prefab: {fileID: 6623268891225759581, guid: 521ee7a19d31b8e4f8a3558db7ba4e97, type: 3}
   Type: 0
