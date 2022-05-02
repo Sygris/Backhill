@@ -22,6 +22,7 @@ public class Torch : MonoBehaviour
     [SerializeField] private Color _chargedColor;
     [SerializeField] private Color _halfChargedColor;
     [SerializeField] private Color _emptyColor;
+    [SerializeField] AudioClip _torchClick;
 
     private void Awake()
     {
@@ -86,6 +87,8 @@ public class Torch : MonoBehaviour
     public void Toggle()
     {
         _light.enabled = !_light.enabled;
+
+        AudioManager.instance.PlaySound(_torchClick, transform.position, 0.5f);
 
         gameObject.SetActive(_light);
     }
