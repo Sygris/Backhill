@@ -15,7 +15,11 @@ public class InspectUI : MonoBehaviour
 
     private void Return()
     {
-        gameObject.SetActive(false);
+        if (gameObject != null)
+        {
+            gameObject.SetActive(false);
+        }
+
         _menu.SetActive(true);
 
         Destroy(_SpawnInspect.transform.GetChild(0).gameObject);

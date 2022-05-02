@@ -16,5 +16,6 @@ MonoBehaviour:
   DisplayName: Downstairs Door Key
   Description: This must be it! The key to the DOWNSTAIRS door.
   Icon: {fileID: 21300000, guid: 5b2125318b1b49541a6568c43ed535f3, type: 3}
-  Prefab: {fileID: 1582621612835726801, guid: 1436513f7b239264f9d74995c0c0b042, type: 3}
+  Prefab: {fileID: 8291308649586645763, guid: cb845a0e013b6a142bebc9874e42ea6a, type: 3}
+  PrefabUI: {fileID: 1141428870695459642, guid: 5b3412781b6887147a2d5e26a6792b4f, type: 3}
   Type: 0

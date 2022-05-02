@@ -10,5 +10,6 @@ public class InventoryItemData : ScriptableObject
     public string Description;
     public Sprite Icon;
     public GameObject Prefab;
+    public GameObject PrefabUI;
     public ItemType Type;
 }

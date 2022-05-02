@@ -88,7 +88,7 @@ public class UIInventoryManager : MonoBehaviour, IPointerEnterHandler, IPointerE
         GameObject menu = GameObject.Find("Menu");
         menu.SetActive(false);
 
-        GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.Prefab, _cameraUI.transform.GetChild(0));
+        GameObject go = Instantiate(InventorySystem.Instance.Inventory[ItemType.Item][index].Data.PrefabUI, _cameraUI.transform.GetChild(0));
         go.layer = LayerMask.NameToLayer("UI");
 
         foreach (Transform child in go.transform)

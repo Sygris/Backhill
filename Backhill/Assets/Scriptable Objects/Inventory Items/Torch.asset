@@ -17,4 +17,5 @@ MonoBehaviour:
   Description: My only source of light in this nightmare
   Icon: {fileID: 21300000, guid: dc1b20ef62c63d24caa08ebdf05078df, type: 3}
   Prefab: {fileID: 6043547344774118737, guid: 0bfef017178c9b24aaf6ffeef9c50a00, type: 3}
+  PrefabUI: {fileID: 4648232886885494442, guid: 175b4aa679b52244bb34fe7b23702684, type: 3}
   Type: 0
