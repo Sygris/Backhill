@@ -7,7 +7,6 @@ public class InventorySystem : MonoBehaviour
 {
     #region Inventory List and Dictionary
     private Dictionary<InventoryItemData, InventoryItem> _itemDictionary;
-    //public List<InventoryItem> Inventory { get; private set; } 
     public Dictionary<ItemType, List<InventoryItem>> Inventory { get; private set; }
     #endregion
 
@@ -37,7 +36,9 @@ public class InventorySystem : MonoBehaviour
     {
         Inventory = new Dictionary<ItemType, List<InventoryItem>>();
         Inventory.Add(ItemType.Item, new List<InventoryItem>());
-        Inventory.Add(ItemType.Note, new List<InventoryItem>());
+        Inventory.Add(ItemType.Note, new List<InventoryItem>()); // Initializes list with 11 spaces = number of notes
+
+        GenerateEmptyList(11);
 
         _itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
     }
@@ -56,7 +57,9 @@ public class InventorySystem : MonoBehaviour
         if (referenceData.Type == ItemType.Note)
         {
             InventoryItem newItem = new InventoryItem(referenceData);
-            Inventory[ItemType.Note].Add(newItem);
+
+            int index = int.Parse(newItem.Data.DisplayName.Substring(newItem.Data.DisplayName.Length - 2)) - 1; // If note name ends in 4 it will be put in the index 3
+            Inventory[ItemType.Note][index] = newItem;
 
             return;
         }
@@ -84,6 +87,14 @@ public class InventorySystem : MonoBehaviour
                 Inventory[ItemType.Item].Remove(value);
                 _itemDictionary.Remove(referenceData);
             }
+        }
+    }
+
+    private void GenerateEmptyList(int size)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            Inventory[ItemType.Note].Add(null);
         }
     }
 }

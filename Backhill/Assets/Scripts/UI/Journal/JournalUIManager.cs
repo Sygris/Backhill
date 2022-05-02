@@ -39,6 +39,8 @@ public class JournalUIManager : MonoBehaviour, /*IPointerEnterHandler,*/ /*IPoin
         {
             if (InventorySystem.Instance.Inventory[ItemType.Note].Count <= 0 || i > (InventorySystem.Instance.Inventory[ItemType.Note].Count - 1)) return;
 
+            if (InventorySystem.Instance.Inventory[ItemType.Note][i] == null) continue;
+
             _titles[i].text = InventorySystem.Instance.Inventory[ItemType.Note][i].Data.DisplayName;
         }
     }

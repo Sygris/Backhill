@@ -11,11 +11,17 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
+        TryGetComponent<Animator>(out _animator);
     }
 
     private bool CheckItem()
     {
+        if (_item == null)
+        {
+            _isDoorOpen = true;
+            return true;
+        }
+
         for (int i = 0; i < InventorySystem.Instance.Inventory[ItemType.Item].Count; i++)
         {
             if (InventorySystem.Instance.Inventory[ItemType.Item][i].Data.Id == _item.Id)
@@ -24,6 +30,7 @@ public class Door : MonoBehaviour
                 return true;
             }
         }
+
         AudioManager.instance.PlaySound(_doorLockedSFX, transform.position, 1.0f);
         return false;
     }
@@ -40,9 +47,7 @@ public class Door : MonoBehaviour
 
                 _animator.Play(_animationName);
 
-                // If any problem with this part comment the line 38 and uncomment the line 39
                 InventorySystem.Instance.Remove(InventorySystem.Instance.Inventory[ItemType.Item][i].Data);
-                //InventorySystem.Instance.Inventory[ItemType.Item][i].RemoveFromStack();
 
                 gameObject.layer = 0;
             }

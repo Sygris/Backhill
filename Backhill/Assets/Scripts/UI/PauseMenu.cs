@@ -55,6 +55,8 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu(int buildIndex)
     {
+        Destroy(FindObjectOfType<InventorySystem>());
+
         SceneManager.LoadScene(buildIndex);
         Time.timeScale = 1f;
     }
