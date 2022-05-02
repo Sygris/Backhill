@@ -35,6 +35,16 @@ public class Door : MonoBehaviour
         return false;
     }
 
+    // It would have been better to clean the code and use the same function just to open the door
+    // Due to being delayed I had to do it like this
+    public void OpenWithoutKey()
+    {
+        AudioManager.instance.PlaySound(_doorUnlockedSFX, transform.position, 1.0f);
+
+        _animator.Play(_animationName);
+        gameObject.layer = 0;
+    }
+
     public virtual void Open()
     {
         if (!CheckItem()) return;
