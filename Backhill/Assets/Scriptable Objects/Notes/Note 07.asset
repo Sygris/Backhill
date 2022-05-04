@@ -18,6 +18,7 @@ MonoBehaviour:
     room will keep me safe. Pray with the beads, pray with my eyes closed. They can\u2019t
     get me of I\u2019m protected. He will protect me. He needs to protect me. He
     must come quick. It\u2019s almost here."
-  Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
+  Icon: {fileID: 21300000, guid: 699d90c61d1861c479e67e5d1759ca5d, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
+  PrefabUI: {fileID: 0}
   Type: 1

@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: "Terrible wine but it keeps me strong. I can take him on when I have
     my wine. Very coppery this wine. Very thick this wine. It will protect me this
     wine. Won\u2019t stop till I\u2019ve emptied it"
-  Icon: {fileID: 21300000, guid: c0cda8528373fd744903578427b5bb1a, type: 3}
+  Icon: {fileID: 21300000, guid: 66562ad78b2d547498b1ed459798b333, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
+  PrefabUI: {fileID: 0}
   Type: 1

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: InventoryItem_Cross
   DisplayName: Cross
-  Description: 
+  Description: A bloodied cross. There is nothing holy about this, I must return
+    it to the RITUAL
   Icon: {fileID: 21300000, guid: 58f733f26d3a35340b35f773e57ae8f6, type: 3}
   Prefab: {fileID: 8710745521263275600, guid: 8d4610a22e8ef364c9c5036d3d9e4fe2, type: 3}
   PrefabUI: {fileID: 5108107398199573932, guid: 67a1d252c749eae4385c72bb21171e65, type: 3}

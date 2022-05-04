@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: InventoryItem_DevilBook
   m_EditorClassIdentifier: 
   Id: InventoryItem_DevilBook
-  DisplayName: Devil's Book
-  Description: 
+  DisplayName: Book of Rituals
+  Description: Such a heavy book and it's all in Latin? That might be for the best.
+    Time to get it back to the RITUAL
   Icon: {fileID: 21300000, guid: 6d44124d16570464fb70d5a0058aba54, type: 3}
   Prefab: {fileID: 814250234044885063, guid: 937ab570c2218b64d8d5c63f2622963f, type: 3}
   PrefabUI: {fileID: 491663458740903717, guid: bf268926ee5abf74c93f506ee206415b, type: 3}
