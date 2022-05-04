@@ -15,10 +15,13 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < _eventManagers.Length; i++)
-            _eventManagers[i].ExecuteTriggerEvent();
+        if (other.CompareTag("Player"))
+        {
+            for (int i = 0; i < _eventManagers.Length; i++)
+                _eventManagers[i].ExecuteTriggerEvent();
 
-        if (_destroyOnExit)
-            gameObject.SetActive(false);
+            if (_destroyOnExit)
+                gameObject.SetActive(false);
+        }
     }
 }
