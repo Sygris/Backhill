@@ -16,8 +16,8 @@ MonoBehaviour:
   DisplayName: Note 11
   Description: "If I have the book, then I have the devil. No bad can hurt me when
     I am its creator. It must stay away. The book must be safe. So many long words.
-    I can\u2019t read them all.  Natus iterum. Mori Iterum Natus iterum. Mori Iterum
-    Natus iterum. Mori Iterum "
+    I can\u2019t read them all. <br>Natus iterum. Mori Iterum<br>Natus iterum. Mori
+    Iterum<br>Natus iterum. Mori Iterum "
   Icon: {fileID: 21300000, guid: 7f97a9ef35405114fbfa16f1574f747e, type: 3}
   Prefab: {fileID: 6427648028131765258, guid: 3cc25527a1f2ed54f86f66c6cfa30d40, type: 3}
   PrefabUI: {fileID: 0}
