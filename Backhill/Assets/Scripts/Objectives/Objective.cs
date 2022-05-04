@@ -8,5 +8,6 @@ public abstract class Objective : MonoBehaviour
     public void Complete()
     {
         ObjectivesManager.Instance.CompleteObjective();
+        gameObject.SetActive(false);
     }
 }
