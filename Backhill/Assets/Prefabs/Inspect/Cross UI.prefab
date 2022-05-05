@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 76b61bbe72bc60d40836bbd33d932e39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 76b61bbe72bc60d40836bbd33d932e39, type: 3}
       propertyPath: m_LocalRotation.w
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 76b61bbe72bc60d40836bbd33d932e39, type: 3}
       propertyPath: m_Name
-      value: Cross
+      value: Cross UI
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 76b61bbe72bc60d40836bbd33d932e39, type: 3}
       propertyPath: m_Layer

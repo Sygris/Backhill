@@ -33,27 +33,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50611687
+      value: 0.4777144
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.48561049
+      value: -0.5213339
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5640763
+      value: 0.5213339
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.43571347
+      value: -0.4777144
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -61,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 96.2
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -81.45
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -7745477367580248064, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_Layer
@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_Name
-      value: Devil's_Book_01
+      value: Devil's_Book_01 UI
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a01437b6617ae1478c0e7b9b3729962, type: 3}
       propertyPath: m_Layer

@@ -29,7 +29,7 @@ public class Inspect : MonoBehaviour
 
             if (transform.childCount <= 0) return;
 
-            transform.GetChild(0).Rotate(rotation);
+            transform/*.GetChild(0)*/.Rotate(rotation, Space.Self);
             _positionLastFrame = mousePosition;
         }
     }

@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386012126138774091, guid: 9e8cac3e64d518a42b6457d4154ee84f, type: 3}
       propertyPath: m_Name
-      value: Sacrificial_knife
+      value: Sacrificial_knife UI
       objectReference: {fileID: 0}
     - target: {fileID: 2386012126138774091, guid: 9e8cac3e64d518a42b6457d4154ee84f, type: 3}
       propertyPath: m_Layer
@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3050909263333878001, guid: 9e8cac3e64d518a42b6457d4154ee84f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1739693
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3050909263333878001, guid: 9e8cac3e64d518a42b6457d4154ee84f, type: 3}
       propertyPath: m_LocalRotation.w
