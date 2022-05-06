@@ -16,8 +16,8 @@ public class PuzzlePiece : MonoBehaviour
         {
             if (item.Data == reference)
             {
-                Place(item.Data.Prefab);
                 _reference = reference;
+                Place(item.Data.Prefab);
                 return;
             }
         }
