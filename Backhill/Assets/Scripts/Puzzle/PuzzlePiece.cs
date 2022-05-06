@@ -3,6 +3,7 @@ using UnityEngine;
 public class PuzzlePiece : MonoBehaviour
 {
     private PuzzleManager _puzzleManager;
+    private InventoryItemData _reference;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class PuzzlePiece : MonoBehaviour
         Instantiate(prefab, transform.position, transform.rotation);
 
         _puzzleManager.RemoveItem(gameObject);
+        InventorySystem.Instance.Remove(_reference);
 
         Destroy(gameObject);
     }
