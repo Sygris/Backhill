@@ -16,6 +16,8 @@ public class DeathSceneManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene(2);
+
+        InventorySystem.Instance.Reset();
     }
 
     public void GoToMainMenu()

@@ -82,7 +82,6 @@ public class Interactor : MonoBehaviour
             // Clear the last interactable value
             _lastInteractable = null;
 
-
             // If the player is not currently looking to an interactable and the interact image is not the default set it to default
             if (_interactImage.sprite != _defaultIcon)
             {

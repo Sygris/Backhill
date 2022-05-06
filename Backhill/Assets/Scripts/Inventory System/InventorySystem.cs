@@ -97,4 +97,12 @@ public class InventorySystem : MonoBehaviour
             Inventory[ItemType.Note].Add(null);
         }
     }
+
+    public void Reset()
+    {
+        Inventory[ItemType.Note].Clear();
+        Inventory[ItemType.Item].Clear();
+
+        GenerateEmptyList(11);
+    }
 }
