@@ -103,6 +103,8 @@ public class InventorySystem : MonoBehaviour
         Inventory[ItemType.Note].Clear();
         Inventory[ItemType.Item].Clear();
 
+        _itemDictionary.Clear();
+
         GenerateEmptyList(11);
     }
 }
